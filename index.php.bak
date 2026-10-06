@@ -1,0 +1,99 @@
+<?php
+session_start();
+include 'conexion.php';
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Clave de "mobile first": el ancho de la página sigue al del celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ConectaLocal · Oficios de tu barrio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+      <div class="d-flex align-items-center">
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+        <a href="mi_cuenta.php" class="btn btn-sm cl-btn-gold me-2">Mi cuenta</a>
+        <?php else: ?>
+        <a href="login.php" class="btn btn-sm cl-btn-gold me-2">Iniciar sesión</a>
+        <?php endif; ?>
+        <button class="cl-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu"
+                aria-controls="menu" aria-label="Abrir menú"><i class="bi bi-list" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <?php include 'menu.php'; ?>
+
+  <main>
+    <section class="cl-hero" id="buscar">
+      <div class="container">
+        <h1 class="cl-hero-title">Tu vecindario, a un mensaje de distancia</h1>
+        <div style="width:90px;height:4px;background:var(--cl-gold);border-radius:2px;margin:0 0 1rem;"></div>
+        <p class="cl-hero-text">ConectaLocal conecta a las personas con trabajadores locales de confianza. Escríbeles directo por WhatsApp, sin intermediarios.</p>
+        <div class="d-flex flex-column flex-sm-row gap-2">
+          <a href="oficios.php" class="btn btn-lg fw-bold" style="background:var(--cl-gold);color:var(--cl-ink);border-radius:999px;">Buscar un servicio</a>
+          <a href="registro.php" class="btn btn-lg fw-bold cl-btn-gold" style="padding:.5rem 1.5rem;">Ofrece tus servicios</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cl-section">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+          <div class="col-lg-6">
+            <h2 class="cl-title">¿Por qué existe ConectaLocal?</h2>
+            <p class="lead">Encontrar a alguien que arregle tu casa no debería ser tan difícil. Hoy mucha gente pierde tiempo preguntando por WhatsApp a amigos o buscando en redes sociales, donde es fácil toparse con perfiles falsos o tarifas poco claras.</p>
+            <p class="lead">Al mismo tiempo, los trabajadores locales de oficios no tienen dónde mostrar su trabajo de forma ordenada y segura.</p>
+          </div>
+
+          <div class="col-lg-6">
+            <h2 class="cl-title">¿Por qué usar la página?</h2>
+            <div class="row g-4 mt-2">
+              <div class="col-12">
+                <div class="cl-card">
+                  <i class="bi bi-geo-alt fs-2 mb-2" style="color:var(--cl-gold);"></i>
+                  <h3 class="h6 fw-bold">Cerca de ti</h3>
+                  <p class="small text-secondary mb-0">Trabajadores de tu mismo sector, en Temuco y alrededores.</p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="cl-card">
+                  <i class="bi bi-whatsapp fs-2 mb-2" style="color:var(--cl-gold);"></i>
+                  <h3 class="h6 fw-bold">Contacto directo</h3>
+                  <p class="small text-secondary mb-0">Escribes por WhatsApp y acuerdas el precio tú mismo.</p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="cl-card">
+                  <i class="bi bi-shield-check fs-2 mb-2" style="color:var(--cl-gold);"></i>
+                  <h3 class="h6 fw-bold">Perfiles reales</h3>
+                  <p class="small text-secondary mb-0">Perfiles visibles con oficio, tarifa y disponibilidad actualizada.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

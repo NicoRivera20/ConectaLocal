@@ -1,0 +1,284 @@
+/* ConectaLocal · estilos. MOBILE FIRST: lo que está fuera de un @media es para celular. */
+
+:root {
+  --cl-ink: #0b0d12;       /* negro */
+  --cl-blue: #2450ff;      /* azul eléctrico */
+  --cl-glow: #8ea6ff;      /* azul claro, solo sobre fondos oscuros */
+  --cl-paper: #eaf0ff;     /* fondo general celeste suave */
+  --cl-line: #e1e5ec;
+  --cl-gold: #c9a227;      /* dorado de acento */
+  --cl-gold-hover: #a8851c;
+}
+
+body { font-family: "Source Sans 3", system-ui, sans-serif; background: var(--cl-paper); color: var(--cl-ink); }
+:focus-visible { outline: 3px solid var(--cl-blue); outline-offset: 2px; }
+
+/* Barra superior */
+.cl-topbar { background: var(--cl-ink); padding: 0.9rem 0; }
+.cl-brand {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.5rem;
+  letter-spacing: -0.03em; color: #fff; text-decoration: none;
+}
+.cl-brand span { color: var(--cl-glow); }
+
+/* Portada: negro con un resplandor azul en la esquina */
+.cl-hero {
+  background: radial-gradient(90% 120% at 100% 0%, rgba(36, 80, 255, 0.55) 0%, transparent 60%), var(--cl-ink);
+  color: #fff; padding: 2.5rem 0 3rem;
+}
+.cl-hero-title {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em;
+  font-size: clamp(2.25rem, 9vw, 4.5rem); line-height: 1.05; max-width: 15ch;
+}
+.cl-hero-text { font-size: 1.15rem; color: #cfd6e4; max-width: 45ch; margin: 1rem 0 1.75rem; }
+
+/* Buscador: tarjeta blanca con una regla de medir arriba */
+.cl-search {
+  position: relative; overflow: hidden; background: #fff; color: var(--cl-ink);
+  border-radius: 14px; padding: 1.75rem 1rem 1rem;
+  display: grid; gap: 0.75rem;
+}
+.cl-search::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: repeating-linear-gradient(90deg, var(--cl-ink) 0 4px, var(--cl-blue) 4px 12px);
+}
+.form-control, .form-select { border-color: var(--cl-line); box-shadow: none !important; }
+.form-control:focus, .form-select:focus { border-color: var(--cl-blue); }
+.form-check-input:checked { background-color: var(--cl-blue); border-color: var(--cl-blue); }
+
+.cl-btn-gold { border: 1px solid var(--cl-gold); color: var(--cl-gold); font-weight: 700; border-radius: 999px; padding: 0.35rem 1.1rem; }
+.cl-btn-gold:hover { background: var(--cl-gold); color: var(--cl-ink); }
+
+.cl-btn-dark { background: var(--cl-ink); color: #fff; font-weight: 700; border: 0; }
+.cl-btn-dark:hover { background: #1c2230; color: #fff; }
+
+/* Pie de página */
+.cl-footer { background: var(--cl-ink); color: #b7c0cf; padding: 1.5rem 0; text-align: center; font-size: 0.9rem; }
+
+/* ---------- Botón de menú y menú a pantalla completa ---------- */
+.cl-burger {
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--cl-gold); color: var(--cl-ink); font-size: 1.4rem;
+  display: grid; place-items: center; cursor: pointer;
+}
+.cl-burger:hover { background: var(--cl-gold-hover); }
+
+.cl-menu {
+  --bs-offcanvas-width: 100vw; --bs-offcanvas-bg: var(--cl-ink); --bs-offcanvas-color: #fff;
+  background-image: radial-gradient(90% 60% at 100% 0%, rgba(36, 80, 255, 0.5) 0%, transparent 65%);
+  position: fixed;
+  z-index: 1055;
+}
+.cl-menu-top { display: flex; align-items: center; justify-content: space-between; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.cl-menu-main { flex: 1 1 auto; display: flex; flex-direction: column; padding-top: 2rem; padding-bottom: 2rem; overflow-y: auto; }
+
+.cl-menu-links { display: flex; flex-direction: column; }
+.cl-menu-links a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 0; color: #fff; text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em;
+  font-size: clamp(1.75rem, 6vw, 3rem);
+}
+.cl-menu-links > :first-child { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.cl-menu-links a:hover { color: var(--cl-glow); }
+.cl-menu-links i { font-size: 0.6em; color: var(--cl-glow); }
+
+.cl-menu-foot { margin-top: auto; padding-top: 2.5rem; }
+.cl-menu-foot p { color: #b7c0cf; margin: 1rem 0 0; }
+.cl-btn-blue { background: var(--cl-blue); color: #fff; font-weight: 700; border: 0; border-radius: 999px; width: 100%; }
+.cl-btn-blue:hover { background: #1a3fd6; color: #fff; }
+
+.cl-topbar :focus-visible, .cl-menu :focus-visible { outline-color: var(--cl-glow); }
+
+/* ---------- Botones de texto grande del menú ---------- */
+.cl-menu-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 1rem 0; background: none; border: 0; cursor: pointer;
+  color: #fff; text-decoration: none;
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em;
+  font-size: clamp(1.75rem, 6vw, 3rem); text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.cl-menu-toggle:hover { color: var(--cl-glow); }
+.cl-menu-toggle i { font-size: 0.6em; color: var(--cl-glow); transition: transform 0.3s ease; }
+.cl-menu-toggle[aria-expanded="true"] i { transform: rotate(180deg); }
+
+/* ---------- Menú desplegable de oficios dentro del menú a pantalla completa ----------
+   El menú es un offcanvas de 100vw con scroll propio, así que un dropdown flotante
+   quedaría recortado por el contenedor. Por eso la lista se abre EN LÍNEA, como un
+   acordeón, en vez de flotar sobre el resto.
+   Los !important son necesarios porque Popper escribe position/transform como
+   estilos inline sobre .dropdown-menu, y un !important del CSS los gana.          */
+.cl-dropdown { position: relative; }
+.cl-dropdown-menu {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  float: none !important;
+  margin: 0;
+  padding: 0 0 .5rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.cl-dropdown-menu .dropdown-item {
+  display: block;
+  padding: .6rem 0 .6rem 1.1rem;
+  color: rgba(255, 255, 255, .72);
+  border-left: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 0;
+  white-space: normal;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: clamp(1.05rem, 3.2vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.cl-dropdown-menu .dropdown-item:hover,
+.cl-dropdown-menu .dropdown-item:focus {
+  color: var(--cl-glow);
+  background: rgba(255, 255, 255, .06);
+  border-left-color: var(--cl-gold);
+}
+.cl-dropdown-menu .dropdown-divider {
+  border-top-color: rgba(255, 255, 255, .2);
+  margin: .35rem 0 .35rem .1rem;
+}
+
+/* ---------- Modal: Cómo funciona ---------- */
+.cl-steps { margin: 0; padding: 0; }
+.cl-step-num {
+  flex: none; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--cl-blue); color: #fff; font-weight: 800;
+  display: grid; place-items: center; margin-right: 1rem; font-size: 1rem;
+}
+
+/* ---------- Sección de oficios y tarjetas ---------- */
+.cl-section { padding: 3.5rem 0 2.5rem; }
+.cl-title { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em; font-size: clamp(1.75rem, 5vw, 2.5rem); }
+.cl-count { color: #525c6b; margin-bottom: 1.25rem; }
+
+.cl-card {
+  background: #fff; border: 1px solid var(--cl-line); border-radius: 16px;
+  padding: 1.5rem; height: 100%; display: flex; flex-direction: column;
+}
+.cl-avatar {
+  width: 56px; height: 56px; flex: none; border-radius: 50%;
+  background: var(--cl-paper); color: var(--cl-ink);
+  display: grid; place-items: center;
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.15rem;
+}
+.cl-estado { font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; white-space: nowrap; }
+.cl-estado.si { background: #e1f4e8; color: #0f5c30; }
+.cl-estado.no { background: #edf0f3; color: #4a5866; }
+.cl-tarifa { font-weight: 700; background: var(--cl-paper); padding: 0.4rem 0.6rem; border-radius: 8px; }
+.cl-destacado {
+  position: absolute; top: -10px; right: 20px; z-index: 1;
+  background: var(--cl-blue); color: #fff; font-weight: 700; font-size: 0.75rem;
+  padding: 0.25rem 0.75rem; border-radius: 999px;
+}
+.cl-btn-wa { background: #0f766e; color: #fff; font-weight: 600; border: 0; border-radius: 8px; }
+.cl-btn-wa:hover { background: #0b5f58; color: #fff; }
+.cl-btn-wa.disabled { background: #e2e8f0; color: #64748b; }
+
+/* ---------- Tarjetas de trabajadores: efectos dinámicos ---------- */
+.cl-tarjeta {
+  position: relative; overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: cl-aparecer 0.5s ease backwards;
+  animation-delay: calc(var(--i, 0) * 50ms);
+}
+/* Línea dorada que se despliega en el borde superior al pasar el mouse */
+.cl-tarjeta::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: var(--cl-gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.cl-tarjeta:hover { transform: translateY(-6px); box-shadow: 0 14px 28px rgba(11, 13, 18, 0.12) !important; }
+.cl-tarjeta:hover::before { transform: scaleX(1); }
+
+/* Entrada escalonada: cada tarjeta aparece un poco después de la anterior (--i) */
+@keyframes cl-aparecer {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Si el sistema del usuario pide menos movimiento, se desactivan los efectos */
+@media (prefers-reduced-motion: reduce) {
+  .cl-tarjeta { animation: none; transition: none; }
+  .cl-tarjeta:hover { transform: none; }
+}
+
+/* ---------- Reseñas y calificación con estrellas ---------- */
+/* Estrellitas doradas de muestra (promedio y lista de reseñas) */
+.cl-stars { color: var(--cl-gold); font-size: 1.05rem; letter-spacing: 0.1em; }
+.cl-mini-estrellas { color: var(--cl-gold); font-weight: 700; font-size: 0.9rem; }
+
+/* Selector interactivo: las estrellas se pintan al pasar el mouse y al elegir */
+.cl-rate { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 0.15rem; margin-bottom: 0.75rem; }
+.cl-rate input { position: absolute; opacity: 0; pointer-events: none; }
+.cl-rate label { font-size: 2rem; line-height: 1; color: #cbd5e1; cursor: pointer; margin: 0; transition: color 0.15s ease, transform 0.15s ease; }
+.cl-rate label:hover { transform: scale(1.15); }
+.cl-rate input:checked ~ label { color: var(--cl-gold); }
+.cl-rate label:hover, .cl-rate label:hover ~ label { color: var(--cl-gold-hover); }
+.cl-rate input:focus-visible + label { outline: 3px solid var(--cl-blue); outline-offset: 2px; border-radius: 4px; }
+
+/* Lista de reseñas en el perfil */
+.cl-resenas { list-style: none; margin: 0; padding: 0; }
+.cl-resena { border-top: 1px solid var(--cl-line); padding: 0.9rem 0; }
+.cl-resena:first-child { border-top: 0; padding-top: 0; }
+.cl-resena p { margin-bottom: 0.25rem; }
+
+/* ---------- Panel de Mi cuenta (trabajador) ---------- */
+.cl-panel { background: #fff; border: 1px solid var(--cl-line); border-radius: 16px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 8px rgba(11, 13, 18, 0.05); }
+.cl-stat { background: #fff; border: 1px solid var(--cl-line); border-radius: 16px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 2px 8px rgba(11, 13, 18, 0.05); height: 100%; }
+.cl-stat-icon { width: 46px; height: 46px; flex: none; border-radius: 12px; display: grid; place-items: center; font-size: 1.25rem; }
+.cl-stat h3 { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.35rem; font-weight: 800; margin: 0; }
+.cl-stat p { margin: 0; color: #525c6b; font-size: 0.85rem; }
+/* ---------- Botones de oficio (se deslizan en celular) ---------- */
+.cl-chips { display: flex; gap: 0.5rem; overflow-x: auto; padding: 3px 3px 0.6rem; margin-bottom: 0.75rem; }
+.cl-chip {
+  flex: none; border: 1px solid var(--cl-line); background: #fff; color: #525c6b;
+  border-radius: 999px; padding: 0.4rem 1rem; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+}
+.cl-chip:hover { border-color: var(--cl-ink); color: var(--cl-ink); }
+.cl-chip.activo { background: var(--cl-ink); color: #fff; border-color: var(--cl-ink); }
+
+/* Mensaje cuando no hay resultados */
+.cl-vacio { background: #fff; border: 1px solid var(--cl-line); border-radius: 16px; padding: 2.5rem 1.5rem; text-align: center; }
+
+/* ---------- Páginas de perfil y registro ---------- */
+.cl-narrow { max-width: 720px; }
+.cl-back { display: inline-block; margin-bottom: 1rem; font-weight: 700; color: var(--cl-ink); text-decoration: none; }
+.cl-back:hover { color: var(--cl-blue); }
+.cl-avatar-lg { width: 88px; height: 88px; font-size: 1.75rem; }
+.cl-datos { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.5rem; }
+.cl-datos dt { color: #525c6b; font-weight: 600; }
+.cl-datos dd { margin: 0; font-weight: 600; }
+.cl-nota { font-size: 0.9rem; color: #525c6b; }
+
+/* ---------- Contacto bloqueado (perfil sin sesión) ----------
+   Panel que reemplaza al botón de WhatsApp cuando el visitante no ha entrado.
+   El número se muestra enmascarado para Communicar que existe sin delatarlo. */
+.cl-lock {
+  background: #f7f9ff;
+  border: 1px solid var(--cl-line);
+  border-left: 4px solid var(--cl-gold);
+  border-radius: 14px;
+  padding: 1.25rem 1.1rem;
+}
+.cl-lock-cabecera {
+  display: flex; align-items: center; gap: .5rem;
+  font-weight: 700; margin-bottom: .75rem;
+}
+.cl-lock-cabecera i { color: var(--cl-gold-hover); font-size: 1.05rem; }
+.cl-lock-num {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.45rem; font-weight: 800; letter-spacing: .06em;
+  color: #9aa4b2; margin: 0 0 .6rem;
+}
+.cl-lock-txt { font-size: .95rem; color: #525c6b; margin-bottom: 1.1rem; }
+.cl-lock-alt { text-align: center; font-size: .9rem; color: #525c6b; margin-top: .9rem; }
+.cl-lock-alt a { font-weight: 700; }
+.cl-foto-preview { width: 96px; height: 96px; object-fit: cover; border-radius: 50%; }

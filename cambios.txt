@@ -1,0 +1,1354 @@
+CAMBIOS REALIZADOS
+==================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se actualizó el botón "Ofrece tus servicios" para que al presionarlo
+abra la página registro.php.
+
+Archivos modificados:
+---------------------
+1. index.php (línea 41)
+2. perfil.php (línea 41)
+3. registro.php (línea 41)
+
+Cambio aplicado:
+----------------
+Antes: href="#"
+Después: href="registro.php"
+
+Resultado:
+----------
+Al hacer clic en el botón "Ofrece tus servicios" ahora se navega
+correctamente a la página de registro.
+
+
+CAMBIOS REALIZADOS (segunda modificación)
+=========================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se agregó un grupo de botones (btn-group de Bootstrap 5) justo arriba
+del campo "¿Qué necesitas?" en el buscador principal.
+
+Archivo modificado:
+-------------------
+1. index.php (formulario de búsqueda)
+
+Cambios aplicados:
+------------------
+- Se agregó un div con clase "btn-group w-100 mb-3" que ocupa el 100%
+  del ancho en móviles.
+- Primer botón: "Quiero contratar" (btn-primary active - destacado).
+- Segundo botón: "Quiero trabajar" (btn-outline-primary - estilo
+  outline/secundario) que enlaza a registro.php.
+- Todo está alineado y centrado dentro de la misma caja blanca del
+  buscador.
+
+Resultado:
+----------
+El buscador ahora ofrece dos opciones claras al usuario: contratar
+un servicio o registrarse para ofrecer servicios.
+
+
+CAMBIOS REALIZADOS (tercera modificación)
+=========================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se modificó el menú desplegable a pantalla completa (offcanvas) para
+agregar interactividad y nuevas funcionalidades.
+
+Archivos modificados:
+---------------------
+1. index.php (menú offcanvas y modal)
+2. css/styles.css (estilos del submenú y modal)
+
+Cambios aplicados:
+------------------
+1. "Buscar un servicio": Se cambió a enlace simple que apunta a
+   index.php#buscador.
+
+2. "Explorar oficios": Se convirtió en un menú desplegable (Collapse
+   de Bootstrap 5) con las subcategorías:
+   - Gasfitería
+   - Electricidad
+   - Carpintería
+   - Jardinería
+
+3. "Cómo funciona": Se convirtió en un botón que abre un Modal
+   centrado de Bootstrap con fondo claro (bg-light) que explica
+   3 pasos:
+   1. Busca tu oficio
+   2. Contacta directo por WhatsApp
+   3. Acuerda el precio con el maestro
+
+4. Nuevos enlaces agregados debajo de "Cómo funciona":
+   - "Centro de Ayuda" (simula abrir un chat de soporte con alert)
+   - "Preguntas Frecuentes"
+
+5. Botón "Ofrece tus servicios": Se confirmó como enlace a registro.php.
+
+6. Pie del menú: Se agregó enlace "Términos y Privacidad" con clases
+   small y text-muted.
+
+7. Se agregaron estilos CSS para:
+   - Submenú colapsable con animación de chevron
+   - Enlaces del submenú con efecto hover
+   - Pasos del modal con números circulares
+
+Resultado:
+----------
+El menú ahora es interactivo con submenús desplegables, modal
+informativo y enlaces adicionales, manteniendo el diseño moderno,
+limpio y Mobile-First.
+
+
+CAMBIOS REALIZADOS (cuarta modificación - Centralización del menú)
+==================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se centralizó el menú desplegable en un archivo PHP reutilizable
+para evitar duplicar código en las 3 vistas.
+
+Decisión técnica:
+-----------------
+Se eligió PHP (include) sobre JavaScript porque:
+- El backend del proyecto será PHP (requisito del profesor)
+- El menú se renderiza en el servidor (sin depender de JS)
+- Es más rápido y profesional
+- Es la forma estándar de trabajar con PHP
+
+Archivos creados:
+-----------------
+1. menu.php - Contiene el HTML completo del menú offcanvas,
+   el modal "Cómo funciona" y el script del Centro de Ayuda.
+
+Archivos modificados:
+---------------------
+1. index.php (antes index.php)
+2. registro.php (antes registro.php)
+3. perfil.php (antes perfil.php)
+
+Cambios aplicados:
+------------------
+- Se reemplazó el HTML del menú en los 3 archivos con:
+  <?php include 'menu.php'; ?>
+- Se renombraron los archivos de .html a .php para que PHP
+  procese los includes.
+
+Resultado:
+----------
+El menú ahora es un componente reutilizable. Cualquier cambio
+futuro solo necesita hacerse en menu.php y se reflejará
+automáticamente en las 3 vistas.
+
+
+CAMBIOS REALIZADOS (quinta modificación - Unificación a base de datos)
+======================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se eliminó la mezcla entre datos de prueba en JavaScript y la
+base de datos MySQL. Todo el proyecto ahora usa la BD.
+
+Archivos modificados:
+---------------------
+1. index.php
+   - Las tarjetas de trabajadores ahora llevan atributos
+     data-oficio, data-sector y data-disponible.
+   - Los chips de oficios se generan desde la BD (solo oficios
+     con trabajadores).
+   - Se agregó session_start() al inicio.
+   - WhatsApp en URL con htmlspecialchars().
+   - Se eliminó el modal duplicado de "Cómo funciona" y el
+     script duplicado del Centro de Ayuda (ya estaban en
+     menu.php).
+
+2. perfil.php
+   - Reescrito: ahora consulta MySQL con prepared statement
+     usando ?id= de la URL.
+   - Eliminadas las referencias a datos.js, app.js y perfil.js.
+   - Eliminada la carga duplicada de Bootstrap.
+   - Agregado session_start().
+
+3. registro.php
+   - El formulario ahora hace POST a sí mismo y guarda en la
+     tabla trabajadores (validación en servidor + subida de foto
+     opcional a img/).
+   - Eliminada la doble carga de Bootstrap, datos.js y app.js.
+   - Se muestra mensaje de éxito tras guardar (?ok=1).
+
+4. menu.php
+   - Corregido enlace roto: index.php#buscador -> index.php#buscar.
+
+Archivos creados:
+-----------------
+1. js/buscar.js - Filtra las tarjetas ya renderizadas por PHP
+   (texto, sector, solo disponibles y chips de oficio).
+
+Archivos eliminados:
+--------------------
+1. js/datos.js (datos de prueba)
+2. js/app.js (versión vieja del filtrado, incompatible con PHP)
+3. js/perfil.js (perfil ahora renderiza con PHP)
+
+Resultado:
+----------
+Una sola fuente de verdad: MySQL. Los datos de prueba en JS se
+eliminaron. El buscador funciona en index.php sin recargar.
+
+
+CAMBIOS REALIZADOS (sexta modificación - Sistema de login)
+============================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se agregó autenticación con sesiones para que cada persona tenga
+su propia cuenta, con tres roles: trabajador, cliente y admin.
+
+Archivos creados:
+-----------------
+1. login.php - Inicia sesión y redirige según rol
+   (admin -> admin.php, resto -> mi_cuenta.php).
+2. crear_cuenta.php - Registro separado: nombre, correo,
+   contraseña (password_hash) y tipo de cuenta
+   (cliente/trabajador).
+3. logout.php - Destruye la sesión y vuelve a index.php.
+4. mi_cuenta.php - Panel personal según el rol del usuario.
+5. admin.php - Panel de administración: tabla de usuarios y
+   trabajadores (solo rol admin).
+
+Archivos modificados:
+---------------------
+1. menu.php - Menú muestra "Entrar/Crear cuenta" si no hay
+   sesión, o "Mi cuenta/Cerrar sesión" si la hay.
+2. registro.php - Exige sesión con rol trabajador; al publicar
+   el perfil lo vincula con usuarios.trabajador_id; si ya tiene
+   perfil muestra aviso en vez del formulario.
+3. index.php - Agregado session_start().
+4. perfil.php - Agregado session_start().
+5. js/registro.js - Ya no solo hace console.log: si todo es
+   válido deja que el formulario haga POST real al servidor.
+
+Base de datos:
+--------------
+- ALTER TABLE usuarios ADD nombre VARCHAR(100).
+- ALTER TABLE usuarios MODIFY rol ENUM('trabajador','cliente','admin').
+
+Resultado:
+----------
+Cada usuario tiene su cuenta. El trabajador publica su servicio
+y aparece en la búsqueda; el cliente busca; el admin revisa los
+registros desde admin.php.
+
+
+CAMBIOS REALIZADOS (séptima modificación - Arreglo de enlaces del menú)
+========================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Los enlaces "Entrar", "Crear cuenta", "Mi cuenta" y "Cerrar sesión"
+no redirigían al hacer clic porque llevaban el atributo
+data-bs-dismiss="offcanvas", que cerraba el menú y, en algunas
+combinaciones, impedía la navegación.
+
+Archivos modificados:
+---------------------
+1. menu.php
+   - Se quitó data-bs-dismiss="offcanvas" de los enlaces de
+     Entrar, Crear cuenta, Mi cuenta y Cerrar sesión.
+
+Resultado:
+----------
+Los botones del menú ahora navegan correctamente a login.php,
+crear_cuenta.php, mi_cuenta.php y logout.php.
+
+
+CAMBIOS REALIZADOS (octava modificación - Cuenta de administrador y rediseño de admin.php)
+==========================================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+1. No existía ninguna cuenta de administrador en la tabla usuarios.
+   Se creó una por defecto:
+   - Correo: admin@conectalocal.cl
+   - Contraseña: admin1234 (guardada con password_hash)
+   - Rol: admin
+
+2. admin.php se rediseñó por completo (antes era una tabla básica).
+   Nuevo diseño:
+   - Barra superior oscura con marca, nombre de sesión y botón Salir.
+   - 4 tarjetas de estadísticas con íconos: usuarios totales,
+     trabajadores, disponibles hoy y clientes.
+   - Paneles blancos con sombras y bordes redondeados.
+   - Insignias de colores por rol (admin/trabajador/cliente).
+   - Badges verde/rojo de disponibilidad y ⭐ en destacados.
+   - Tablas con table-responsive para móviles.
+
+Archivos modificados:
+---------------------
+1. admin.php (rediseño completo)
+
+Base de datos:
+--------------
+- INSERT INTO usuarios (... 'Administrador', 'admin@conectalocal.cl', hash, 'admin').
+- ALTER TABLE usuarios ADD creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP.
+
+Resultado:
+----------
+El administrador entra con admin@conectalocal.cl / admin1234 y ve
+un panel con estadísticas y tablas de usuarios y trabajadores.
+
+
+CAMBIOS REALIZADOS (novena modificación - Nueva página oficios.php)
+====================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+La página principal (index.php) ya no muestra las tarjetas de
+trabajadores. Estas pasaron a una nueva página oficios.php,
+accesible desde el menú desplegable "Explorar oficios".
+
+Archivos creados:
+-----------------
+1. oficios.php - Contiene el buscador, chips de oficios y las
+   tarjetas de trabajadores (antes estaba en index.php).
+
+Archivos modificados:
+---------------------
+1. index.php - Nuevo contenido de bienvenida:
+   - Hero con presentación y botones (Buscar servicio / Ofrece
+     tus servicios).
+   - Sección "¿Por qué existe ConectaLocal?" (problemática).
+   - Sección "¿Por qué usar la página?" (beneficios).
+
+2. menu.php - "Buscar un servicio" y las subcategorías de
+   "Explorar oficios" ahora apuntan a oficios.php.
+
+3. perfil.php - "Volver a la búsqueda" apunta a oficios.php.
+
+4. mi_cuenta.php - "Buscar servicios" apunta a oficios.php.
+
+Resultado:
+----------
+El inicio es ahora una landing informativa y la exploración de
+oficios vive en su propia página, accesible desde el menú.
+
+
+CAMBIOS REALIZADOS (décima modificación - Botón Iniciar sesión en la cabecera)
+===============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se quitaron del menú desplegable los enlaces "Entrar" y "Crear cuenta".
+Ahora al lado del menú hay un botón "Iniciar sesión" (o "Mi cuenta" si
+ya hay sesión iniciada) que va a login.php, y desde login.php
+se puede acceder también al registro (crear_cuenta.php).
+
+Archivos modificados:
+---------------------
+1. menu.php - Eliminados los enlaces Entrar/Crear cuenta del menú.
+   Quedan Mi cuenta/Cerrar sesión solo cuando hay sesión iniciada.
+2. index.php, oficios.php, perfil.php, registro.php - Agregado botón
+   "Iniciar sesión" (o "Mi cuenta" si hay sesión) al lado del menú.
+
+Resultado:
+----------
+El acceso a login/registro va desde la cabecera; el menú queda solo
+para navegación del sitio.
+
+
+CAMBIOS REALIZADOS (undécima modificación - Rediseño del inicio con dorado)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+1. El color dorado se usó como acento sobre fondo oscuro/azul,
+   no como fondo principal.
+
+2. index.php ahora muestra en dos columnas:
+   - Izquierda: "¿Por qué existe ConectaLocal?"
+   - Derecha: "¿Por qué usar la página?" (3 tarjetas apiladas)
+
+3. Botones "Iniciar sesión" y "Mi cuenta" con borde dorado
+   (.cl-btn-gold) en toda la cabecera.
+
+4. Botón de menú (hamburguesa) pasó a dorado.
+
+5. Héroe: línea decorativa dorada bajo el título y botón
+   "Buscar un servicio" sólido dorado.
+
+Archivos modificados:
+---------------------
+1. css/styles.css - Se agregó --cl-gold y --cl-gold-hover,
+   .cl-btn-gold, y se actualizó .cl-burger a dorado.
+2. index.php - Dos columnas, línea dorada, botón dorado,
+   íconos dorados.
+3. oficios.php, perfil.php, registro.php - Botones de cabecera
+   con clase cl-btn-gold.
+
+Resultado:
+----------
+Inicio más elegante con dorado como acento sobre fondo azul.
+
+
+CAMBIOS REALIZADOS (duodécima modificación - Corrección de codificación)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Todos los archivos (PHP, CSS, JS, TXT) quedaron con codificación
+UTF-8 duplicada después de un guardado por PowerShell, lo que
+producía símbolos raros en lugar de tildes en la página.
+
+Se corrigió convirtiendo cada archivo de nuevo a UTF-8 simple
+(sin BOM) y verificando con php -l y al recargar index.php.
+
+Resultado:
+----------
+Las tildes y caracteres especiales se ven correctamente
+nuevamente en todos los textos de la página.
+
+
+CAMBIOS REALIZADOS (decimotercera modificación - Corrección de signos � en perfiles)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+En la página de perfiles aparecían signos raros (�?�) en vez de
+tildes y separadores. Dos causas:
+
+1. Varios archivos estaban guardados en codificación Latin-1
+   (Windows-1252) mientras el sitio declara UTF-8, por lo que
+   los acentos se veían como �.
+   Se convirtieron a UTF-8 (sin BOM):
+   - menu.php, conexion.php, css/styles.css, js/buscar.js,
+     js/registro.js, codigos.txt
+
+2. Dos caracteres estaban corrompidos en el código fuente
+   (sus bytes originales se habían perdido):
+   - oficios.php (línea 126): separador entre oficio y sector,
+     restaurado a "•" (ej: Gasfitero • Ñuñoa).
+   - admin.php (línea 125): columna Destacado, restaurado a
+     ⭐ para destacado y — para no destacado.
+
+Archivos modificados:
+---------------------
+1. oficios.php
+2. admin.php
+3. menu.php
+4. conexion.php
+5. css/styles.css
+6. js/buscar.js
+7. js/registro.js
+8. codigos.txt (también regenerado con el código actualizado
+   de los 14 archivos del proyecto)
+
+Resultado:
+----------
+Todos los archivos del proyecto son UTF-8 válidos y ya no
+aparecen signos � en los perfiles ni en el resto del sitio.
+
+
+CAMBIOS REALIZADOS (decimocuarta modificación - Botón Cerrar sesión dorado)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+El botón "Cerrar sesión" en la cabecera de mi_cuenta.php usaba
+la clase btn-outline-light (blanco con borde) en vez del estilo
+dorado cl-btn-gold que usan "Iniciar sesión" y "Mi cuenta" en
+el resto del sitio.
+
+Archivos modificados:
+---------------------
+1. mi_cuenta.php (línea 32)
+
+Cambio aplicado:
+----------------
+Antes: class="btn btn-sm btn-outline-light"
+Después: class="btn btn-sm cl-btn-gold"
+
+Resultado:
+----------
+El botón "Cerrar sesión" se ve dorado, igual que los demás
+botones de la cabecera. codigos.txt se regeneró con este cambio.
+
+
+CAMBIOS REALIZADOS (decimoquinta modificación - Tarjetas dinámicas)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Las tarjetas de los trabajadores en oficios.php eran estáticas.
+Se les agregaron efectos para que la página se vea más profesional:
+
+1. Entrada escalonada: al cargar la página, cada tarjeta aparece
+   con un fundido y sube suavemente, una tras otra (animación
+   cl-aparecer con retardo según la posición --i de cada tarjeta).
+
+2. Al pasar el mouse: la tarjeta se eleva 6px con una sombra más
+   marcada y se despliega una línea dorada en su borde superior.
+
+3. Accesibilidad: si el sistema del usuario tiene activada la
+   opción "reducir movimiento" (prefers-reduced-motion), los
+   efectos se desactivan.
+
+4. Arreglo extra: el botón "Contactar" usaba la variable
+   --cl-tape, que no existía, por lo que se veía sin color de
+   fondo. Ahora usa la clase cl-btn-wa (verde WhatsApp), igual
+   que el botón de contacto de la página de perfil.
+
+Archivos modificados:
+---------------------
+1. oficios.php - Clase cl-tarjeta y variable --i en cada tarjeta;
+   botón Contactar con cl-btn-wa.
+2. css/styles.css - Nuevos estilos .cl-tarjeta, la línea dorada
+   ::before, el @keyframes cl-aparecer y el media query de
+   movimiento reducido.
+
+Resultado:
+----------
+Las tarjetas entran en cascada al cargar y reaccionan al mouse
+con elevación y acento dorado. codigos.txt se regeneró con
+estos cambios.
+
+
+CAMBIOS REALIZADOS (decimosexta modificación - Nuevos oficios: Mueblista y Mecánico)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se agregaron dos nuevos oficios a la plataforma: Mueblista y
+Mecánico. Los oficios se guardan en la tabla "oficios" de la
+base de datos, y registro.php valida el nombre contra esa tabla,
+por lo que hubo que agregarlos tanto en la BD como en las vistas.
+
+Cambios aplicados:
+------------------
+1. Base de datos:
+   - INSERT INTO oficios (nombre) VALUES ('Mueblista'), ('Mecánico');
+   - Quedaron con id 7 y 8 (verificado en HEX: tildes correctas).
+
+2. registro.php (línea ~160): se agregaron las opciones
+   "Mueblista" y "Mecánico" al select de oficio del formulario.
+
+3. menu.php (submenú "Explorar oficios"): se agregaron los
+   enlaces "Mueblista" y "Mecánico" que llevan a oficios.php.
+
+4. oficios.php (chips de "Explora oficios"): antes los chips
+   solo mostraban oficios con trabajadores registrados, por lo
+   que los nuevos no aparecían. Ahora se muestran TODOS los
+   oficios de la tabla (SELECT nombre FROM oficios ORDER BY
+   nombre), tengan o no trabajadores. Si un oficio no tiene
+   tarjetas, el filtro muestra el mensaje de "sin resultados".
+
+Resultado:
+----------
+Los trabajadores ya pueden registrarse como Mueblista o Mecánico,
+ambos oficios aparecen en el menú y en los chips de "Explora
+oficios". codigos.txt se regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (decimoséptima modificación - Limpieza del menú)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Se quitaron del menú desplegable las opciones "Buscar un
+servicio" y "Explorar oficios" (con su submenú de oficios),
+porque esos botones no hacían nada útil: todos llevaban a
+oficios.php sin filtrar, y si ya estabas en esa página parecía
+que no hacían nada.
+
+La navegación a oficios.php se mantiene desde otros lugares:
+el botón "Buscar un servicio" del inicio (index.php), "Ver
+Perfil" y "Volver a la búsqueda" en perfil.php, y el enlace
+"Buscar servicios" en mi_cuenta.php.
+
+Archivos modificados:
+---------------------
+1. menu.php - Eliminados el enlace "Buscar un servicio" y todo
+   el bloque del submenú "Explorar oficios". El menú ahora
+   muestra: Cómo funciona, Centro de Ayuda, Preguntas Frecuentes
+   y Mi cuenta/Cerrar sesión (si hay sesión).
+2. css/styles.css - Eliminados los estilos .cl-dropdown y
+   .cl-submenu que ya no se usaban. Se agregó borde inferior a
+   .cl-menu-toggle para que "Cómo funciona" tenga la misma línea
+   separadora que los demás ítems del menú.
+
+Resultado:
+----------
+El menú queda solo con opciones que sí funcionan. codigos.txt
+se regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (decimoctava modificación - Sistema de reseñas con estrellas)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+El cliente, después de contactar al trabajador por WhatsApp y
+recibir el servicio, ahora puede calificarlo con 1 a 5 estrellas
+y dejar un comentario sobre su experiencia.
+
+Base de datos:
+--------------
+- CREATE TABLE resenas (id, trabajador_id, usuario_id,
+  estrellas, comentario, creado_en).
+- Llave única (trabajador_id, usuario_id): un cliente deja UNA
+  reseña por trabajador; si vuelve a calificar, se actualiza la
+  que tenía (INSERT ... ON DUPLICATE KEY UPDATE).
+- Llaves foráneas a trabajadores y usuarios (ON DELETE CASCADE).
+- Se insertaron 2 reseñas de prueba del cliente "Nicolas Rivera"
+  para los trabajadores 1 y 2 (se pueden borrar con:
+  DELETE FROM resenas;).
+
+Cambios aplicados:
+------------------
+1. perfil.php
+   - Guarda la reseña (POST) solo si hay sesión con rol cliente;
+     valida 1-5 estrellas y comentario de máx. 300 caracteres.
+   - Redirige tras guardar para evitar envíos duplicados.
+   - Cabecera del perfil: promedio de estrellas y total de
+     reseñas (con enlace a la sección).
+   - Nueva sección "Reseñas de clientes": formulario con
+     estrellas interactivas (radio + CSS, se pintan al pasar el
+     mouse y al elegir), comentario opcional, y la lista de
+     reseñas con nombre, estrellas, comentario y fecha.
+   - Si el cliente ya calificó, el formulario se rellena y el
+     botón dice "Actualizar reseña".
+   - Si no hay sesión, se invita a iniciar sesión para opinar.
+
+2. oficios.php
+   - La consulta trae el promedio y total de reseñas de cada
+     trabajador (subconsultas, compatible con cualquier sql_mode).
+   - Las tarjetas muestran "★ 4,5 (N reseñas)" en dorado bajo el
+     oficio, solo si el trabajador tiene reseñas.
+
+3. css/styles.css
+   - .cl-stars (estrellas doradas de muestra), .cl-rate
+     (selector interactivo con hover y foco accesible),
+     .cl-mini-estrellas (en tarjetas) y .cl-resenas/.cl-resena
+     (lista en el perfil).
+
+Resultado:
+----------
+Los trabajadores acumulan reputación visible: estrellas en las
+tarjetas y en su perfil, con comentarios de los clientes.
+codigos.txt se regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (decimonovena modificación - Ocultar contacto en el propio perfil)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+Cuando un trabajador con sesión iniciada miraba su propio
+perfil, le aparecía el botón "Escribir por WhatsApp", lo que
+es ilógico (no tiene sentido que se hable a sí mismo). Lo mismo
+pasaba con el botón "Contactar" de su tarjeta en oficios.php.
+
+Cambios aplicados:
+------------------
+1. perfil.php
+   - Se detecta si el perfil pertenece al usuario con sesión
+     (SELECT en usuarios donde trabajador_id coincida con el id
+     del perfil).
+   - Si es su propio perfil, en vez del botón de WhatsApp se
+     muestra un aviso: "Este es tu perfil público. Así es como
+     lo ven los clientes. Ir a mi cuenta".
+
+2. oficios.php
+   - Se consulta el trabajador_id del usuario con sesión.
+   - En su propia tarjeta, el botón "Contactar" se reemplaza
+     por una etiqueta deshabilitada que dice "Es tu perfil".
+
+Resultado:
+----------
+El trabajador ya no ve botones para contactarse a sí mismo; el
+resto de los usuarios sigue viendo los botones con normalidad.
+codigos.txt se regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (vigésima modificación - El trabajador controla su disponibilidad)
+=============================================================================
+
+Fecha: 01/10/2026
+
+Descripción:
+El trabajador solo podía elegir si estaba disponible al momento
+de registrarse, y después no podía cambiarlo. Ahora puede
+activar o desactivar su disponibilidad cuando quiera desde su
+panel.
+
+Cambios aplicados:
+------------------
+1. mi_cuenta.php
+   - Se procesa el formulario (POST) que invierte el campo
+     "disponible" del trabajador en la BD (UPDATE trabajadores),
+     solo si hay sesión con rol trabajador y perfil publicado.
+   - Redirige con ?ok=1 para mostrar confirmación y evitar que
+     el cambio se repita al recargar.
+   - Nueva tarjeta "Tu disponibilidad": muestra el estado actual
+     con la etiqueta verde "Disponible" o gris "Ocupado", una
+     explicación de qué significa, y el botón para cambiar:
+     - Si está disponible: botón rojo "Cambiar a no disponible".
+     - Si no está disponible: botón verde "Cambiar a disponible".
+
+Efecto en el resto del sitio (ya existía):
+------------------------------------------
+- En oficios.php su tarjeta pasa de "Disponible" a "Ocupado"
+  (badge rojo) y el botón "Contactar" queda deshabilitado.
+- En su perfil aparece "No disponible hoy" en vez del botón de
+  WhatsApp.
+
+Resultado:
+----------
+El trabajador controla su disponibilidad en cualquier momento
+desde Mi cuenta, y el cambio se refleja de inmediato en la
+búsqueda y en su perfil. codigos.txt se regeneró con estos
+cambios.
+
+
+CAMBIOS REALIZADOS (vigésima primera modificación - Panel profesional del trabajador)
+=============================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+La página "Mi cuenta" del trabajador se veía muy simple: solo
+un saludo, dos avisos verdes y un botón. Se rediseñó como un
+panel (dashboard) profesional, con un estilo similar al panel
+de administración.
+
+Cambios aplicados:
+------------------
+1. mi_cuenta.php
+   - La consulta del trabajador ahora trae también el nombre de
+     su oficio y sector, el promedio de estrellas y el total de
+     reseñas.
+   - Nueva tarjeta de resumen del perfil: avatar con iniciales,
+     nombre, oficio · sector, badge "⭐ Destacado" (si aplica) y
+     el botón "Ver mi perfil público".
+   - Nueva fila de 3 estadísticas con íconos (estilo admin):
+     "Tu estado" (Disponible/Ocupado, verde o rojo según el
+     caso), "Calificación" (promedio de estrellas) y "Reseñas"
+     (cantidad recibida).
+   - La tarjeta de disponibilidad se mantiene, con el nuevo
+     estilo de panel.
+   - Se eliminó el aviso verde "Tu perfil está publicado" (el
+     panel ya muestra esa información).
+   - Si el trabajador aún no publica su perfil, se muestra una
+     tarjeta centrada con ícono, título, texto y el botón
+     "Publicar mi perfil" (antes era solo un aviso azul).
+
+2. css/styles.css
+   - Nuevas clases .cl-panel (tarjetas blancas con borde y
+     sombra suave), .cl-stat, .cl-stat-icon y sus textos.
+
+Resultado:
+----------
+Al entrar como trabajador, "Mi cuenta" muestra un panel
+profesional con su perfil, sus estadísticas y el control de
+disponibilidad. codigos.txt se regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (vigésima segunda modificación - Panel profesional del cliente)
+=============================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+La página "Mi cuenta" del cliente era muy simple: solo un texto
+y un botón. Se rediseñó como un panel profesional (igual que se
+hizo con el del trabajador) y ahora muestra las reseñas que el
+propio cliente ha dejado.
+
+Cambios aplicados:
+------------------
+1. mi_cuenta.php (rol cliente)
+   - Tarjeta de resumen: avatar con iniciales, nombre, correo y
+     el botón "Buscar servicios".
+   - Fila de 3 estadísticas con íconos: "Reseñas escritas",
+     "Promedio que das" (media de estrellas que otorga) y
+     "Disponibles hoy" (trabajadores disponibles en la
+     plataforma).
+   - Nueva sección "Mis reseñas": lista de las reseñas que el
+     cliente ha dejado, con el nombre del trabajador y su
+     oficio, las estrellas que le dio, su comentario, la fecha
+     y un enlace "Ver / editar reseña" que lleva al perfil del
+     trabajador (donde el formulario ya aparece rellenado con
+     su reseña).
+   - Si no tiene reseñas, se muestra un mensaje invitando a
+     calificar después de contratar un servicio.
+   - Se copió la función estrellasHtml() (la misma de
+     perfil.php) para dibujar las estrellitas doradas.
+
+Resultado:
+----------
+El cliente ve un panel profesional con sus estadísticas y el
+historial de trabajadores que ha calificado, pudiendo editar
+sus reseñas desde ahí. codigos.txt se regeneró con estos
+cambios.
+
+
+CAMBIOS REALIZADOS (vigésima tercera modificación - Nuevos sectores)
+=============================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+Se agregaron 5 nuevos sectores (barrios) a la plataforma:
+Fundo El Carmen, Pueblo Nuevo, Centro, Amanecer y Santa Rosa.
+
+Cambios aplicados:
+------------------
+1. Base de datos:
+   - INSERT INTO sectores (nombre) VALUES ('Fundo El Carmen'),
+     ('Pueblo Nuevo'), ('Centro'), ('Amanecer'), ('Santa Rosa');
+   - Quedaron con id 5 al 9 (la tabla tenía 4 sectores).
+
+2. registro.php: se agregaron los 5 sectores al select "Sector
+   donde trabajas" del formulario del trabajador.
+
+3. oficios.php: se agregaron los 5 sectores al select de filtro
+   del buscador, para que los clientes puedan filtrar por ellos.
+
+Resultado:
+----------
+Los trabajadores pueden registrarse en los nuevos sectores y
+los clientes pueden filtrar la búsqueda por ellos. codigos.txt
+se regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (vigésima cuarta modificación - Preguntas Frecuentes funcionales)
+=============================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+La opción "Preguntas Frecuentes" del menú no hacía nada (era un
+enlace a "#"). Ahora abre un modal con un acordeón de 6
+preguntas reales que la gente podría hacerse.
+
+Cambios aplicados:
+------------------
+1. menu.php
+   - El enlace muerto se reemplazó por un botón que abre el
+     nuevo modal #faq-modal (igual que "Cómo funciona").
+   - Nuevo modal con acordeón de Bootstrap (una pregunta abierta
+     a la vez) con estas preguntas:
+     1. ¿Qué pasa si un trabajador hace un mal trabajo?
+        (las malas reseñas bajan su promedio y los
+        administradores pueden eliminar su perfil)
+     2. ¿Usar ConectaLocal tiene algún costo? (es gratis)
+     3. ¿Cómo contacto a un trabajador? (botón WhatsApp, no
+        pagar por adelantado)
+     4. ¿Cómo dejo una reseña? (cuenta de cliente, 1-5
+        estrellas en el perfil)
+     5. ¿Puedo confiar en los trabajadores de la página?
+        (estrellas y comentarios de clientes reales)
+     6. Soy trabajador, ¿cómo publico mi servicio? (cuenta,
+        Mi cuenta, Publicar mi perfil)
+
+Resultado:
+----------
+"Preguntas Frecuentes" abre un modal con respuestas reales,
+incluyendo qué pasa con los malos trabajadores. codigos.txt se
+regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (vigésima quinta modificación - Contacto y perfiles solo con sesión)
+=============================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+Antes cualquier visitante podía ver el perfil completo de un
+trabajador y contactarlo por WhatsApp sin tener cuenta. Ahora
+hay que iniciar sesión para contactar o ver perfiles.
+
+Cambios aplicados:
+------------------
+1. perfil.php
+   - Si no hay sesión, ya no se consultan los datos del
+     trabajador y se muestra una pantalla que dice "Inicia
+     sesión para ver este perfil. Los datos de contacto de los
+     trabajadores son solo para usuarios registrados", con
+     botones "Iniciar sesión" y "Crear cuenta".
+
+2. oficios.php
+   - En las tarjetas, si no hay sesión los botones "Ver Perfil"
+     y "Contactar" se reemplazan por un solo botón "Inicia
+     sesión para contactar" que lleva a login.php.
+   - La lógica anterior (Es tu perfil / Contactar / No disp.)
+     solo se aplica cuando hay sesión iniciada.
+
+Nota: los visitantes sí pueden seguir viendo la lista de
+trabajadores y usar el buscador y los filtros; solo se
+restringe el contacto y el perfil completo.
+
+Resultado:
+----------
+Sin cuenta se puede explorar, pero para contactar o ver el
+perfil hay que registrarse o iniciar sesión. codigos.txt se
+regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (vigésima sexta modificación - Calificación y eliminación en el panel de administrador)
+=============================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+El administrador ahora ve el promedio de estrellas que los
+clientes le dejan a cada trabajador, y si tiene un promedio
+bajo puede eliminarlo de ConectaLocal.
+
+Cambios aplicados:
+------------------
+1. admin.php
+   - Nueva columna "Calificación" en la tabla de trabajadores:
+     promedio de estrellas y cantidad de reseñas (ej: ⭐ 4,5
+     (3)). Si el promedio es menor a 3 se muestra en ROJO para
+     detectar rápido a los mal evaluados; si no tiene reseñas
+     dice "Sin reseñas".
+   - Nueva columna "Acción" con botón "Eliminar": pide
+     confirmación (alerta de JavaScript) y luego borra al
+     trabajador de ConectaLocal: su perfil, su cuenta de
+     usuario y sus reseñas (estas últimas se borran en cascada
+     por las llaves foráneas). Antes de borrar se desvincula la
+     cuenta (trabajador_id = NULL) para no romper la llave
+     foránea.
+   - Tras eliminar, el panel muestra el aviso "El trabajador
+     fue eliminado de ConectaLocal".
+
+Resultado:
+----------
+El administrador puede vigilar la calidad de los trabajadores
+por su promedio de estrellas y expulsar de la plataforma a los
+mal evaluados, tal como se anuncia en Preguntas Frecuentes.
+codigos.txt se regeneró con estos cambios.
+
+
+CAMBIOS REALIZADOS (vigésima séptima modificación - Arreglo del menú desplegable)
+==================================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+El menú desplegable (offcanvas de Bootstrap 5) no funcionaba
+correctamente. Al hacer clic en el botón hamburguesa, el menú no
+se abría o se abría pero no se veía correctamente.
+
+Causas identificadas:
+--------------------
+1. El offcanvas no tenía aria-hidden="true" cuando estaba cerrado,
+   lo que podía causar problemas de accesibilidad y visualización.
+2. El offcanvas no tenía data-bs-backdrop="true", por lo que el fondo
+   no se oscurecía y podía confundir al usuario.
+3. El offcanvas no tenía data-bs-keyboard="true", por lo que no se
+   podía cerrar con la tecla Escape.
+4. El CSS del offcanvas no tenía position: fixed ni z-index definido,
+   lo que podía causar problemas de superposición con otros elementos
+   como el cl-hero::after que tiene position: absolute.
+
+Cambios aplicados:
+------------------
+1. menu.php:
+   - Se agregó aria-hidden="true" al offcanvas.
+   - Se agregó data-bs-backdrop="true" para que el fondo se oscurezca.
+   - Se agregó data-bs-keyboard="true" para poder cerrar con Escape.
+   - Se agregó data-bs-scroll="false" para evitar scroll en el body.
+
+2. css/styles.css:
+   - Se agregó position: fixed al .cl-menu para asegurar que el
+     offcanvas se posicione correctamente en la pantalla.
+   - Se agregó z-index: 1050 al .cl-menu para asegurar que el
+     offcanvas esté por encima de otros elementos (el z-index por
+     defecto de Bootstrap para offcanvas es 1045, pero al usar
+     100vw de ancho y position: absolute en el hero, se necesitaba
+     un z-index más alto).
+
+Resultado:
+----------
+El menú desplegable ahora funciona correctamente:
+- Se abre al hacer clic en el botón hamburguesa.
+- El fondo se oscurece cuando el menú está abierto.
+- Se puede cerrar con la tecla Escape.
+- Se puede cerrar haciendo clic en el botón X o en cualquier enlace.
+- El menú se muestra por encima de todos los demás elementos.
+
+
+CAMBIOS REALIZADOS (vigésima octava modificación - Menú desplegable solo funciona sin sesión)
+============================================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+El menú desplegable (offcanvas) solo funcionaba cuando el usuario tenía
+sesión iniciada. Sin sesión, al hacer clic en el botón hamburguesa el
+menú no se abría.
+
+Causa identificada:
+--------------------
+El offcanvas estaba incluido justo después del <header> y antes del
+<main>, dentro del flujo normal del documento. El problema era que el
+elemento .cl-hero::after tiene position: absolute y crea un contexto de
+apilamiento (stacking context) que podía interferir con el offcanvas,
+especialmente cuando no hay sesión y el hero es más prominente.
+
+Solución aplicada:
+------------------
+1. index.php:
+   - Se movió el <?php include 'menu.php'; ?> de antes del <main> a
+     después del </main> y antes del <footer>. Esto asegura que el
+     offcanvas esté en el nivel raíz del body, fuera de cualquier
+     contexto de apilamiento creado por elementos con position: absolute
+     o relative.
+
+2. css/styles.css:
+   - Se aumentó el z-index del .cl-menu de 1050 a 1055 para asegurar
+     que el offcanvas esté por encima de todos los demás elementos,
+     incluyendo el cl-hero::after y cualquier otro elemento con z-index
+     alto.
+
+Resultado:
+----------
+El menú desplegable ahora funciona correctamente tanto con sesión como
+sin sesión:
+- Se abre al hacer clic en el botón hamburguesa en cualquier página.
+- El fondo se oscurece cuando el menú está abierto.
+- Se puede cerrar con la tecla Escape.
+- Se puede cerrar haciendo clic en el botón X o en cualquier enlace.
+- El menú se muestra por encima de todos los demás elementos.
+
+
+CAMBIOS REALIZADOS (vigésima novena modificación - Arreglo definitivo del menú desplegable)
+===========================================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+El menú desplegable (offcanvas) seguía sin funcionar al abrir "Cómo
+funciona" y "Preguntas Frecuentes", y tenía opciones incompletas:
+"Centro de Ayuda" era solo un alert de prueba y "Términos y Privacidad"
+era un enlace muerto a #.
+
+Causa identificada:
+--------------------
+Los botones del menú tenían al mismo tiempo data-bs-toggle="modal",
+data-bs-target="#...-modal" y data-bs-dismiss="offcanvas". Bootstrap
+resuelve el dismiss con getElementFromSelector(), que usa el
+data-bs-target del botón, o sea el MODAL y no el menú. Resultado: el
+menú nunca se cerraba, el modal (z-index 1050) quedaba tapado detrás
+del menú a pantalla completa (z-index 1055) y además se creaba una
+instancia de offcanvas sobre el elemento del modal.
+
+Cambios aplicados:
+------------------
+1. menu.php
+   - Se quitaron data-bs-toggle="modal" y data-bs-dismiss="offcanvas"
+     de los botones del menú.
+   - Ahora usan data-open-modal="id-del-modal" y un script propio que
+     cierra el menú, espera el evento hidden.bs.offcanvas y recién
+     ahí abre el modal. El modal nunca queda detrás del menú.
+   - "Centro de Ayuda" dejó de ser un alert: ahora abre un modal real
+     con WhatsApp, correo y horario de contacto.
+   - "Términos y Privacidad" dejó de ser un enlace muerto: ahora abre
+     un modal con uso de la plataforma, pagos, privacidad y cuenta.
+   - Se eliminó el script huérfano del alert de Centro de Ayuda.
+
+Archivos modificados:
+---------------------
+1. menu.php (se refleja en index.php, oficios.php, perfil.php y
+   registro.php porque todas lo incluyen con <?php include 'menu.php'; ?>)
+
+Resultado:
+----------
+El menú abre y cierra bien (hamburguesa, X, Escape o clic en el fondo)
+y cada opción funciona: Cómo funciona, Centro de Ayuda, Preguntas
+Frecuentes y Términos y Privacidad abren sus modales sobre la página
+sin quedar tapados por el menú. codigos.txt se regeneró con este cambio.
+
+
+CAMBIOS REALIZADOS (trigésima modificación - Bootstrap e íconos locales)
+========================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+El botón hamburguesa seguía sin abrir el menú en algunas cargas: si
+el navegador no podía bajar Bootstrap desde el CDN de jsDelivr (sin
+internet, CDN bloqueado o carga lenta), ni el menú ni los modales
+funcionaban, y la página se veía incompleta al faltar los estilos.
+
+Cambios aplicados:
+------------------
+1. Se descargaron al proyecto (carpeta vendor/):
+   - vendor/bootstrap/css/bootstrap.min.css (Bootstrap 5.3.3)
+   - vendor/bootstrap/js/bootstrap.bundle.min.js (Bootstrap 5.3.3)
+   - vendor/bootstrap-icons/css/bootstrap-icons.min.css (1.11.3)
+   - vendor/bootstrap-icons/css/fonts/bootstrap-icons.woff2 y .woff
+
+2. Se reemplazaron las URLs del CDN por las rutas locales en:
+   index.php, oficios.php, perfil.php, registro.php, login.php,
+   crear_cuenta.php, mi_cuenta.php y admin.php.
+
+3. Google Fonts sigue en su CDN: si no carga, la página usa fuentes
+   del sistema sin romperse (ya hay respaldos en el CSS).
+
+Resultado:
+----------
+El menú desplegable, los modales y los estilos funcionan siempre,
+incluso sin internet, porque ya no dependen de ningún CDN. Recordar
+recargar con Ctrl+F5 para evitar la copia en caché del navegador.
+codigos.txt se regeneró con este cambio.
+
+
+CAMBIOS REALIZADOS (trigésima primera modificación - Se repone el menú desplegable de oficios)
+==============================================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+Se repuso dentro del menú a pantalla completa el desplegable "Explorar
+oficios", que se había quitado en la decimoséptima modificación.
+A diferencia del anterior, sus enlaces ahora llevan el filtro del oficio
+en la URL, así que sí sirven para algo.
+
+Nota sobre el reporte de "no abre como visitante":
+-------------------------------------------------
+Se reportó que el menú no abría al hacer clic estando como visitante en
+el inicio. Al revisar index.php se comprobó que el botón hamburguesa
+está FUERA del condicional de sesión, que el script de Bootstrap se
+carga correctamente (vendor/bootstrap/js/bootstrap.bundle.min.js) y que
+no existe ningún dropdown en la barra de navegación. Es decir, el
+condicional if/else no era la causa: el botón es idéntico con y sin
+sesión. El desplegable se repuso para ambos estados por igual.
+
+Cambios aplicados:
+------------------
+1. menu.php
+   - Se agregó el bloque .cl-dropdown con el botón "Explorar oficios"
+     (data-bs-toggle="dropdown", data-bs-display="static") y la lista
+     de oficios generada desde la BD, con guarded isset($conexion) para
+     que el menú no falle si se incluye sin conexión.
+   - Cada enlace apunta a oficios.php?oficio=<nombre codificado>.
+
+2. css/styles.css
+   - Se repusieron los estilos .cl-dropdown y .cl-dropdown-menu.
+   - La lista se abre EN LÍNEA (position: static con !important) en vez
+     de flotar, porque el menú es un offcanvas de 100vw con scroll y
+     recortaría el desplegable flotante. El !important le gana a los
+     estilos inline que Popper escribe sobre .dropdown-menu.
+   - Se cambió .cl-menu-links a:first-child por
+     .cl-menu-links > :first-child, que es lo que hace que el primer
+     ítem del menú lleve la línea separadora superior.
+
+3. js/buscar.js
+   - Se lee ?oficio= de la URL al cargar y se activa el chip
+     correspondiente, comparando los nombres normalizados (sin tildes y
+     en minúsculas) para que un oficio con acento se asocie bien.
+
+Resultado:
+----------
+El desplegable se abre y cierra en el menú con y sin sesión. Sus
+enlaces ya no son enlaces muertos: oficios.php llega con el oficio
+aplicado. Recordar recargar con Ctrl+F5.
+
+
+CAMBIOS REALIZADOS (trigésima segunda modificación - Arreglo de la tarjeta de destacados)
+===========================================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+En el inicio, la tarjeta de "Trabajadores destacados" se cortaba a
+la mitad y mostraba un error fatal en vez de la tarifa. El resto de
+la tarjeta (botón "Ver perfil") quedaba sin renderizar.
+
+Causa identificada:
+------------------
+index.php usaba number_format() sobre el campo tarifa, que es un
+VARCHAR de texto libre y no un número. El campo se llena desde un
+<input type="text"> con placeholder "Ej: Desde $15.000 la visita", y
+solo se valida que tenga 3 caracteres o más, así que contiene valores
+como "Desde $15.000 la visita", "$8.000 por hora" o
+"Presupuesto sin costo".
+
+Con PHP 8, number_format() exige float, así que al recibir un string
+lanza:
+  Fatal error: Uncaught TypeError: number_format(): Argument #1
+  ($num) must be of type float, string given in index.php:210
+
+index.php era el ÚNICO archivo que hacía esto. admin.php, oficios.php
+y perfil.php ya mostraban la tarifa con htmlspecialchars(), que es lo
+correcto.
+
+Cambios aplicados:
+------------------
+1. index.php (línea 210)
+   - Se reemplazó:
+       Tarifa: $<?= number_format($t['tarifa'], 0, ',', '.') ?>
+     por:
+       Tarifa: <?= htmlspecialchars($t['tarifa']) ?>
+   - Se quitó el "$" fijo del marcado porque la tarifa ya lo trae en
+     su texto y se estaba duplicando.
+
+2. codigos.txt - Se regeneró.
+
+Resultado:
+----------
+Las tarjetas de destacados muestran la tarifa completa y ya no
+cortan la página con un error fatal.
+
+Nota: los demás number_format() del proyecto se usan sobre "promedio",
+que sí es un número (viene de AVG()), y no se tocaron.
+
+
+CAMBIOS REALIZADOS (trigésima tercera modificación - Perfil profesional para visitantes)
+===========================================================================================
+
+Fecha: 02/10/2026
+
+Descripción:
+Al presionar "Ver perfil" en los trabajadores destacados del inicio, el
+visitante llegaba a un muro genérico: "Inicia sesión para ver este
+perfil" con dos botones, sin ninguna información del trabajador que
+había elegido. Se veía básico y no daba ganas de entrar.
+
+Se conserva la decisión de producto de la vigésima quinta
+modificación (el contacto es solo para usuarios registrados), pero en
+vez de tapar el perfil se muestra un adelanto de la información
+pública, con el contacto bloqueado de forma explícita.
+
+Cambios aplicados:
+------------------
+1. perfil.php
+   - El perfil se carga siempre, no solo con sesión. La consulta ya no
+     trae la columna whatsapp: el número se consulta en una segunda
+     consulta SOLO si hay sesión, así nunca llega al HTML de un
+     visitante. Antes venía en la misma consulta y se descartaba al
+     final.
+   - El promedio y la cantidad de reseñas se calculan siempre (son
+     públicos y ya se veían en las tarjetas). La lista de reseñas con
+     nombre de cliente sigue exigiendo sesión.
+   - Se reordenaron las ramas del condicional, que quedaban confusas:
+       antes:  if (!$logueado) ... elseif (!$t) ...
+       ahora:  if (!$t) ... elseif (!$logueado) ... else ...
+     Antes un visitante con un id inválido veía "Inicia sesión", lo que
+     era engañoso.
+   - Nueva vista para el visitante: encabezado con avatar, nombre,
+     oficio, sector, estrellas y estado; "Sobre su trabajo"; ficha con
+     oficio, sector y tarifa; y un panel de contacto bloqueado con el
+     número enmascarado (+56 9 •••• ••••).
+
+2. css/styles.css
+   - Nuevos estilos .cl-lock, .cl-lock-cabecera, .cl-lock-num,
+     .cl-lock-txt y .cl-lock-alt, con filete dorado a la izquierda para
+     marcar el límite entre lo visible y lo bloqueado.
+
+3. login.php
+   - Nuevo parámetro ?redir= para volver a la página de origen después
+     de entrar. Antes el visitante entraba, iba a su cuenta y tenía que
+     volver a buscar al trabajador a mano.
+   - El valor se valida con una expresión regular que solo acepta
+     "<nombre>.php" con parámetros simples, para que el parámetro no
+     sirva como redirección abierta a sitios externos.
+   - Los administradores siguen yendo a admin.php aunque venga redir.
+
+Archivos modificados:
+--------------------
+1. perfil.php
+2. css/styles.css
+3. login.php
+
+Resultado:
+----------
+Un visitante que presiona "Ver perfil" ahora ve el perfil completo del
+trabajador (oficio, sector, tarifa, descripción y calificación) con el
+WhatsApp enmascarado y una llamada a la acción clara. Al entrar, vuelve
+directo a ese perfil. El número real y las reseñas con nombre de
+cliente siguen ocultos sin sesión.
+
+
+CAMBIOS REALIZADOS (trigésima cuarta modificación - Botón para ver la contraseña)
+==================================================================================
+
+Fecha: 05/10/2026
+
+Descripción:
+Los campos de contraseña (iniciar sesión y crear cuenta) solo mostraban
+puntos, así que era fácil equivocarse al escribirla y no había forma de
+comprobar qué se estaba tecleando. Ahora cada campo tiene un botón con un
+ojo que muestra u oculta lo que se escribió.
+
+Cambios aplicados:
+------------------
+1. js/ver-contrasena.js (archivo nuevo)
+   - Recorre todos los botones marcados con data-ver-contrasena y cambia
+     el type del input asociado entre "password" y "text" al hacer clic.
+   - Cambia el icono: bi-eye (mostrar) / bi-eye-slash (ocultar).
+   - Actualiza aria-pressed y aria-label para lectores de pantalla.
+   - Es genérico: sirve para cualquier campo de contraseña futuro, solo
+     hay que añadir el atributo data-ver-contrasena="id-del-input" al
+     botón. No hay que tocar el JavaScript.
+
+2. login.php
+   - El campo de contraseña se envolvió en un input-group de Bootstrap
+     con el botón del ojo a la derecha.
+   - El botón es type="button" para que no envíe el formulario.
+   - Se agregó el texto de ayuda "Pulsa el ojo para ver lo que escribes"
+     enlazado con aria-describedby.
+   - Se cargó <script src="js/ver-contrasena.js"></script> antes de
+     cerrar el body.
+
+3. crear_cuenta.php
+   - Mismo tratamiento en el campo de contraseña del registro.
+   - La ayuda quedó integrada en el texto que ya informaba el mínimo de
+     caracteres: "Mínimo 8 caracteres. Pulsa el ojo para ver lo que
+     escribes".
+
+Archivos creados:
+-----------------
+1. js/ver-contrasena.js
+
+Archivos modificados:
+---------------------
+1. login.php
+2. crear_cuenta.php
+3. codigos.txt (regenerado, ahora con 15 archivos)
+
+Resultado:
+----------
+Al escribir la contraseña se puede ver con un clic y volver a ocultarla
+con otro, tanto al entrar como al crear la cuenta. codigos.txt se
+regeneró con estos cambios.
+
+Nota:
+No se tocó la validación del servidor: password_verify() y
+password_hash() siguen igual. El botón solo cambia cómo se ve el texto
+en pantalla.

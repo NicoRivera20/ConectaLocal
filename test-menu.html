@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test menú · ConectaLocal</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    /* Misma clase personalizada que usa el menú real */
+    .cl-menu {
+      --bs-offcanvas-width: 100vw; --bs-offcanvas-bg: #0b0d12; --bs-offcanvas-color: #fff;
+      background-image: radial-gradient(90% 60% at 100% 0%, rgba(36, 80, 255, 0.5) 0%, transparent 65%);
+      position: fixed;
+      z-index: 1055;
+    }
+  </style>
+</head>
+<body>
+  <div class="p-4">
+    <h1>Prueba del menú desplegable</h1>
+    <p id="diag" class="alert alert-secondary">Diagnóstico: verificando…</p>
+
+    <h2>Prueba 1 · Menú con Bootstrap puro</h2>
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuPuro" aria-controls="menuPuro">
+      <i class="bi bi-list"></i> Abrir menú puro
+    </button>
+
+    <h2 class="mt-4">Prueba 2 · Menú con el CSS del sitio (.cl-menu)</h2>
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuSitio" aria-controls="menuSitio">
+      <i class="bi bi-list"></i> Abrir menú del sitio
+    </button>
+  </div>
+
+  <!-- Menú puro de Bootstrap -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="menuPuro" aria-label="Menú puro">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menú puro</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Si ves esto, el menú puro funciona.</p>
+    </div>
+  </div>
+
+  <!-- Menú con el mismo CSS y atributos del sitio -->
+  <div class="offcanvas offcanvas-end cl-menu" tabindex="-1" id="menuSitio" aria-label="Menú del sitio" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true" data-bs-scroll="false">
+    <div class="container p-3">
+      <h5 class="text-white">Menú del sitio</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      <p class="text-white">Si ves esto, el menú con el CSS del sitio funciona.</p>
+    </div>
+  </div>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      var diag = document.getElementById('diag');
+      if (typeof bootstrap === 'undefined') {
+        diag.className = 'alert alert-danger';
+        diag.textContent = 'bootstrap JS NO se ejecutó: el archivo vendor/bootstrap/js/bootstrap.bundle.min.js no cargó (revisa la pestaña Red de F12).';
+      } else {
+        diag.className = 'alert alert-success';
+        diag.textContent = 'bootstrap JS SÍ se ejecutó. Ahora prueba los dos botones de arriba.';
+      }
+    });
+  </script>
+</body>
+</html>

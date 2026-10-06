@@ -1,0 +1,2475 @@
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\css\styles.css
+===========================================================
+
+/* ConectaLocal · estilos. MOBILE FIRST: lo que está fuera de un @media es para celular. */
+
+:root {
+  --cl-ink: #0b0d12;       /* negro */
+  --cl-blue: #2450ff;      /* azul eléctrico */
+  --cl-glow: #8ea6ff;      /* azul claro, solo sobre fondos oscuros */
+  --cl-paper: #eaf0ff;     /* fondo general celeste suave */
+  --cl-line: #e1e5ec;
+  --cl-gold: #c9a227;      /* dorado de acento */
+  --cl-gold-hover: #a8851c;
+}
+
+body { font-family: "Source Sans 3", system-ui, sans-serif; background: var(--cl-paper); color: var(--cl-ink); }
+:focus-visible { outline: 3px solid var(--cl-blue); outline-offset: 2px; }
+
+/* Barra superior */
+.cl-topbar { background: var(--cl-ink); padding: 0.9rem 0; }
+.cl-brand {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.5rem;
+  letter-spacing: -0.03em; color: #fff; text-decoration: none;
+}
+.cl-brand span { color: var(--cl-glow); }
+
+/* Portada: negro con un resplandor azul en la esquina */
+.cl-hero {
+  background: radial-gradient(90% 120% at 100% 0%, rgba(36, 80, 255, 0.55) 0%, transparent 60%), var(--cl-ink);
+  color: #fff; padding: 2.5rem 0 3rem;
+}
+.cl-hero-title {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em;
+  font-size: clamp(2.25rem, 9vw, 4.5rem); line-height: 1.05; max-width: 15ch;
+}
+.cl-hero-text { font-size: 1.15rem; color: #cfd6e4; max-width: 45ch; margin: 1rem 0 1.75rem; }
+
+/* Buscador: tarjeta blanca con una regla de medir arriba */
+.cl-search {
+  position: relative; overflow: hidden; background: #fff; color: var(--cl-ink);
+  border-radius: 14px; padding: 1.75rem 1rem 1rem;
+  display: grid; gap: 0.75rem;
+}
+.cl-search::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: repeating-linear-gradient(90deg, var(--cl-ink) 0 4px, var(--cl-blue) 4px 12px);
+}
+.form-control, .form-select { border-color: var(--cl-line); box-shadow: none !important; }
+.form-control:focus, .form-select:focus { border-color: var(--cl-blue); }
+.form-check-input:checked { background-color: var(--cl-blue); border-color: var(--cl-blue); }
+
+.cl-btn-gold { border: 1px solid var(--cl-gold); color: var(--cl-gold); font-weight: 700; border-radius: 999px; padding: 0.35rem 1.1rem; }
+.cl-btn-gold:hover { background: var(--cl-gold); color: var(--cl-ink); }
+
+.cl-btn-dark { background: var(--cl-ink); color: #fff; font-weight: 700; border: 0; }
+.cl-btn-dark:hover { background: #1c2230; color: #fff; }
+
+/* Pie de página */
+.cl-footer { background: var(--cl-ink); color: #b7c0cf; padding: 1.5rem 0; text-align: center; font-size: 0.9rem; }
+
+/* ---------- Botón de menú y menú a pantalla completa ---------- */
+.cl-burger {
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--cl-gold); color: var(--cl-ink); font-size: 1.4rem;
+  display: grid; place-items: center; cursor: pointer;
+}
+.cl-burger:hover { background: var(--cl-gold-hover); }
+
+.cl-menu {
+  --bs-offcanvas-width: 100vw; --bs-offcanvas-bg: var(--cl-ink); --bs-offcanvas-color: #fff;
+  background-image: radial-gradient(90% 60% at 100% 0%, rgba(36, 80, 255, 0.5) 0%, transparent 65%);
+  position: fixed;
+  z-index: 1055;
+}
+.cl-menu-top { display: flex; align-items: center; justify-content: space-between; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.cl-menu-main { flex: 1 1 auto; display: flex; flex-direction: column; padding-top: 2rem; padding-bottom: 2rem; overflow-y: auto; }
+
+.cl-menu-links { display: flex; flex-direction: column; }
+.cl-menu-links a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 0; color: #fff; text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em;
+  font-size: clamp(1.75rem, 6vw, 3rem);
+}
+.cl-menu-links > :first-child { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.cl-menu-links a:hover { color: var(--cl-glow); }
+.cl-menu-links i { font-size: 0.6em; color: var(--cl-glow); }
+
+.cl-menu-foot { margin-top: auto; padding-top: 2.5rem; }
+.cl-menu-foot p { color: #b7c0cf; margin: 1rem 0 0; }
+.cl-btn-blue { background: var(--cl-blue); color: #fff; font-weight: 700; border: 0; border-radius: 999px; width: 100%; }
+.cl-btn-blue:hover { background: #1a3fd6; color: #fff; }
+
+.cl-topbar :focus-visible, .cl-menu :focus-visible { outline-color: var(--cl-glow); }
+
+/* ---------- Botones de texto grande del menú ---------- */
+.cl-menu-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 1rem 0; background: none; border: 0; cursor: pointer;
+  color: #fff; text-decoration: none;
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em;
+  font-size: clamp(1.75rem, 6vw, 3rem); text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.cl-menu-toggle:hover { color: var(--cl-glow); }
+.cl-menu-toggle i { font-size: 0.6em; color: var(--cl-glow); transition: transform 0.3s ease; }
+.cl-menu-toggle[aria-expanded="true"] i { transform: rotate(180deg); }
+
+/* ---------- Menú desplegable de oficios dentro del menú a pantalla completa ----------
+   El menú es un offcanvas de 100vw con scroll propio, así que un dropdown flotante
+   quedaría recortado por el contenedor. Por eso la lista se abre EN LÍNEA, como un
+   acordeón, en vez de flotar sobre el resto.
+   Los !important son necesarios porque Popper escribe position/transform como
+   estilos inline sobre .dropdown-menu, y un !important del CSS los gana.          */
+.cl-dropdown { position: relative; }
+.cl-dropdown-menu {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  float: none !important;
+  margin: 0;
+  padding: 0 0 .5rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.cl-dropdown-menu .dropdown-item {
+  display: block;
+  padding: .6rem 0 .6rem 1.1rem;
+  color: rgba(255, 255, 255, .72);
+  border-left: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 0;
+  white-space: normal;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: clamp(1.05rem, 3.2vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.cl-dropdown-menu .dropdown-item:hover,
+.cl-dropdown-menu .dropdown-item:focus {
+  color: var(--cl-glow);
+  background: rgba(255, 255, 255, .06);
+  border-left-color: var(--cl-gold);
+}
+.cl-dropdown-menu .dropdown-divider {
+  border-top-color: rgba(255, 255, 255, .2);
+  margin: .35rem 0 .35rem .1rem;
+}
+
+/* ---------- Modal: Cómo funciona ---------- */
+.cl-steps { margin: 0; padding: 0; }
+.cl-step-num {
+  flex: none; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--cl-blue); color: #fff; font-weight: 800;
+  display: grid; place-items: center; margin-right: 1rem; font-size: 1rem;
+}
+
+/* ---------- Sección de oficios y tarjetas ---------- */
+.cl-section { padding: 3.5rem 0 2.5rem; }
+.cl-title { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -0.03em; font-size: clamp(1.75rem, 5vw, 2.5rem); }
+.cl-count { color: #525c6b; margin-bottom: 1.25rem; }
+
+.cl-card {
+  background: #fff; border: 1px solid var(--cl-line); border-radius: 16px;
+  padding: 1.5rem; height: 100%; display: flex; flex-direction: column;
+}
+.cl-avatar {
+  width: 56px; height: 56px; flex: none; border-radius: 50%;
+  background: var(--cl-paper); color: var(--cl-ink);
+  display: grid; place-items: center;
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.15rem;
+}
+.cl-estado { font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; white-space: nowrap; }
+.cl-estado.si { background: #e1f4e8; color: #0f5c30; }
+.cl-estado.no { background: #edf0f3; color: #4a5866; }
+.cl-tarifa { font-weight: 700; background: var(--cl-paper); padding: 0.4rem 0.6rem; border-radius: 8px; }
+.cl-destacado {
+  position: absolute; top: -10px; right: 20px; z-index: 1;
+  background: var(--cl-blue); color: #fff; font-weight: 700; font-size: 0.75rem;
+  padding: 0.25rem 0.75rem; border-radius: 999px;
+}
+.cl-btn-wa { background: #0f766e; color: #fff; font-weight: 600; border: 0; border-radius: 8px; }
+.cl-btn-wa:hover { background: #0b5f58; color: #fff; }
+.cl-btn-wa.disabled { background: #e2e8f0; color: #64748b; }
+
+/* ---------- Tarjetas de trabajadores: efectos dinámicos ---------- */
+.cl-tarjeta {
+  position: relative; overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: cl-aparecer 0.5s ease backwards;
+  animation-delay: calc(var(--i, 0) * 50ms);
+}
+/* Línea dorada que se despliega en el borde superior al pasar el mouse */
+.cl-tarjeta::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: var(--cl-gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.cl-tarjeta:hover { transform: translateY(-6px); box-shadow: 0 14px 28px rgba(11, 13, 18, 0.12) !important; }
+.cl-tarjeta:hover::before { transform: scaleX(1); }
+
+/* Entrada escalonada: cada tarjeta aparece un poco después de la anterior (--i) */
+@keyframes cl-aparecer {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Si el sistema del usuario pide menos movimiento, se desactivan los efectos */
+@media (prefers-reduced-motion: reduce) {
+  .cl-tarjeta { animation: none; transition: none; }
+  .cl-tarjeta:hover { transform: none; }
+}
+
+/* ---------- Reseñas y calificación con estrellas ---------- */
+/* Estrellitas doradas de muestra (promedio y lista de reseñas) */
+.cl-stars { color: var(--cl-gold); font-size: 1.05rem; letter-spacing: 0.1em; }
+.cl-mini-estrellas { color: var(--cl-gold); font-weight: 700; font-size: 0.9rem; }
+
+/* Selector interactivo: las estrellas se pintan al pasar el mouse y al elegir */
+.cl-rate { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 0.15rem; margin-bottom: 0.75rem; }
+.cl-rate input { position: absolute; opacity: 0; pointer-events: none; }
+.cl-rate label { font-size: 2rem; line-height: 1; color: #cbd5e1; cursor: pointer; margin: 0; transition: color 0.15s ease, transform 0.15s ease; }
+.cl-rate label:hover { transform: scale(1.15); }
+.cl-rate input:checked ~ label { color: var(--cl-gold); }
+.cl-rate label:hover, .cl-rate label:hover ~ label { color: var(--cl-gold-hover); }
+.cl-rate input:focus-visible + label { outline: 3px solid var(--cl-blue); outline-offset: 2px; border-radius: 4px; }
+
+/* Lista de reseñas en el perfil */
+.cl-resenas { list-style: none; margin: 0; padding: 0; }
+.cl-resena { border-top: 1px solid var(--cl-line); padding: 0.9rem 0; }
+.cl-resena:first-child { border-top: 0; padding-top: 0; }
+.cl-resena p { margin-bottom: 0.25rem; }
+
+/* ---------- Panel de Mi cuenta (trabajador) ---------- */
+.cl-panel { background: #fff; border: 1px solid var(--cl-line); border-radius: 16px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 8px rgba(11, 13, 18, 0.05); }
+.cl-stat { background: #fff; border: 1px solid var(--cl-line); border-radius: 16px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.9rem; box-shadow: 0 2px 8px rgba(11, 13, 18, 0.05); height: 100%; }
+.cl-stat-icon { width: 46px; height: 46px; flex: none; border-radius: 12px; display: grid; place-items: center; font-size: 1.25rem; }
+.cl-stat h3 { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.35rem; font-weight: 800; margin: 0; }
+.cl-stat p { margin: 0; color: #525c6b; font-size: 0.85rem; }
+/* ---------- Botones de oficio (se deslizan en celular) ---------- */
+.cl-chips { display: flex; gap: 0.5rem; overflow-x: auto; padding: 3px 3px 0.6rem; margin-bottom: 0.75rem; }
+.cl-chip {
+  flex: none; border: 1px solid var(--cl-line); background: #fff; color: #525c6b;
+  border-radius: 999px; padding: 0.4rem 1rem; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+}
+.cl-chip:hover { border-color: var(--cl-ink); color: var(--cl-ink); }
+.cl-chip.activo { background: var(--cl-ink); color: #fff; border-color: var(--cl-ink); }
+
+/* Mensaje cuando no hay resultados */
+.cl-vacio { background: #fff; border: 1px solid var(--cl-line); border-radius: 16px; padding: 2.5rem 1.5rem; text-align: center; }
+
+/* ---------- Páginas de perfil y registro ---------- */
+.cl-narrow { max-width: 720px; }
+.cl-back { display: inline-block; margin-bottom: 1rem; font-weight: 700; color: var(--cl-ink); text-decoration: none; }
+.cl-back:hover { color: var(--cl-blue); }
+.cl-avatar-lg { width: 88px; height: 88px; font-size: 1.75rem; }
+.cl-datos { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.5rem; }
+.cl-datos dt { color: #525c6b; font-weight: 600; }
+.cl-datos dd { margin: 0; font-weight: 600; }
+.cl-nota { font-size: 0.9rem; color: #525c6b; }
+
+/* ---------- Contacto bloqueado (perfil sin sesión) ----------
+   Panel que reemplaza al botón de WhatsApp cuando el visitante no ha entrado.
+   El número se muestra enmascarado para Communicar que existe sin delatarlo. */
+.cl-lock {
+  background: #f7f9ff;
+  border: 1px solid var(--cl-line);
+  border-left: 4px solid var(--cl-gold);
+  border-radius: 14px;
+  padding: 1.25rem 1.1rem;
+}
+.cl-lock-cabecera {
+  display: flex; align-items: center; gap: .5rem;
+  font-weight: 700; margin-bottom: .75rem;
+}
+.cl-lock-cabecera i { color: var(--cl-gold-hover); font-size: 1.05rem; }
+.cl-lock-num {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.45rem; font-weight: 800; letter-spacing: .06em;
+  color: #9aa4b2; margin: 0 0 .6rem;
+}
+.cl-lock-txt { font-size: .95rem; color: #525c6b; margin-bottom: 1.1rem; }
+.cl-lock-alt { text-align: center; font-size: .9rem; color: #525c6b; margin-top: .9rem; }
+.cl-lock-alt a { font-weight: 700; }
+.cl-foto-preview { width: 96px; height: 96px; object-fit: cover; border-radius: 50%; }
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\js\buscar.js
+===========================================================
+
+// Filtra las tarjetas ya renderizadas por PHP (sin recargar la página)
+const textoInput = document.querySelector("#texto");
+const sectorInput = document.querySelector("#sector");
+const soloDisponibles = document.querySelector("#solo-disponibles");
+const tarjetas = document.querySelectorAll("#tarjetas > div[data-oficio]");
+const chips = document.querySelector("#chips");
+const contador = document.querySelector("#contador");
+const vacio = document.querySelector("#vacio");
+let oficioActivo = "Todos";
+
+// Quita tildes y pasa a minúsculas: así "gasfiteria" también encuentra "Gasfitería"
+const normalizar = (t) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+// Si la URL trae ?oficio=Nombre (enlaces del menú "Explorar oficios"), se activa ese
+// chip al cargar. Se comparan los nombres normalizados porque llegan con tildes y
+// capitalización distintas a las que trae el chip.
+const oficioUrl = new URLSearchParams(window.location.search).get("oficio");
+if (oficioUrl) {
+  const chipUrl = Array.from(chips.querySelectorAll("button[data-oficio]")).find(
+    (c) => normalizar(c.dataset.oficio) === normalizar(oficioUrl)
+  );
+  if (chipUrl) {
+    oficioActivo = chipUrl.dataset.oficio;
+    chips.querySelectorAll(".cl-chip").forEach((c) => {
+      c.classList.toggle("activo", c === chipUrl);
+      c.setAttribute("aria-pressed", c === chipUrl);
+    });
+  }
+}
+
+function filtrar() {
+  const texto = normalizar(textoInput.value.trim());
+  const sector = sectorInput.value;
+  const soloDispo = soloDisponibles.checked;
+  let visibles = 0;
+
+  tarjetas.forEach((card) => {
+    const coincideTexto = !texto || normalizar(card.textContent).includes(texto);
+    const coincideSector = !sector || card.dataset.sector === sector;
+    const coincideOficio = oficioActivo === "Todos" || card.dataset.oficio === oficioActivo;
+    const coincideDispo = !soloDispo || card.dataset.disponible === "1";
+    const mostrar = coincideTexto && coincideSector && coincideOficio && coincideDispo;
+
+    card.style.display = mostrar ? "" : "none";
+    if (mostrar) visibles++;
+  });
+
+  contador.textContent = `${visibles} ${visibles === 1 ? "experto encontrado" : "expertos encontrados"} cerca de ti`;
+  vacio.classList.toggle("d-none", visibles > 0);
+}
+
+chips.addEventListener("click", (e) => {
+  const boton = e.target.closest("button[data-oficio]");
+  if (!boton) return;
+  oficioActivo = boton.dataset.oficio;
+  chips.querySelectorAll(".cl-chip").forEach((c) => {
+    c.classList.toggle("activo", c === boton);
+    c.setAttribute("aria-pressed", c === boton);
+  });
+  filtrar();
+});
+
+textoInput.addEventListener("input", filtrar);
+sectorInput.addEventListener("change", filtrar);
+soloDisponibles.addEventListener("change", filtrar);
+
+document.querySelector("#form-busqueda").addEventListener("submit", (e) => {
+  e.preventDefault();
+  filtrar();
+  document.querySelector("#oficios").scrollIntoView({ behavior: "smooth" });
+});
+
+filtrar();
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\js\registro.js
+===========================================================
+
+const form = document.querySelector("#form-registro");
+const exito = document.querySelector("#exito");
+const inputFoto = document.querySelector("#foto");
+const vistaPrevia = document.querySelector("#vista-previa");
+const descripcion = document.querySelector("#descripcion");
+const contadorDesc = document.querySelector("#contador-desc");
+
+// Cada regla recibe el campo y devuelve un mensaje de error ("" = está bien)
+const reglas = {
+  nombre: (el) => el.value.trim().length < 3 ? "Escribe tu nombre completo." : "",
+  whatsapp: (el) => /^9\d{8}$/.test(el.value.replace(/\s/g, ""))
+    ? "" : "Escribe 9 dígitos que empiecen con 9. Ej: 9 1234 5678.",
+  oficio: (el) => el.value ? "" : "Elige tu oficio.",
+  sector: (el) => el.value ? "" : "Elige el sector donde trabajas.",
+  tarifa: (el) => el.value.trim().length < 3 ? "Indica una tarifa referencial. Ej: Desde $15.000 la visita." : "",
+  descripcion: (el) => el.value.trim().length < 20 ? "Cuéntanos en al menos 20 caracteres qué trabajos haces." : "",
+  foto: (el) => {
+    const archivo = el.files[0];
+    if (!archivo) return "";                                        // la foto es opcional
+    if (!["image/jpeg", "image/png"].includes(archivo.type)) return "La foto debe ser JPG o PNG.";
+    if (archivo.size > 2 * 1024 * 1024) return "La foto pesa más de 2 MB.";
+    return "";
+  },
+  consentimiento: (el) => el.checked ? "" : "Debes aceptar para publicar tu perfil.",
+};
+
+// Marca el campo en rojo (o lo limpia) y escribe el mensaje en su .invalid-feedback
+function validarCampo(el) {
+  const regla = reglas[el.name];
+  if (!regla) return true;
+  const mensaje = regla(el);
+  const contenedor = el.closest(".mb-3") || el.parentElement;
+  contenedor.querySelector(".invalid-feedback").textContent = mensaje;
+  el.classList.toggle("is-invalid", mensaje !== "");
+  return mensaje === "";
+}
+
+// Valida al salir de cada campo y vuelve a validar mientras se corrige
+form.querySelectorAll("input, select, textarea").forEach((el) => {
+  el.addEventListener("blur", () => validarCampo(el));
+  el.addEventListener("input", () => { if (el.classList.contains("is-invalid")) validarCampo(el); });
+  el.addEventListener("change", () => { if (el.classList.contains("is-invalid")) validarCampo(el); });
+});
+
+descripcion.addEventListener("input", () => {
+  contadorDesc.textContent = `${descripcion.value.length} / 200`;
+});
+
+// Vista previa de la foto
+inputFoto.addEventListener("change", () => {
+  if (vistaPrevia.src) URL.revokeObjectURL(vistaPrevia.src);
+  const archivo = inputFoto.files[0];
+  if (archivo && validarCampo(inputFoto)) {
+    vistaPrevia.src = URL.createObjectURL(archivo);
+    vistaPrevia.classList.remove("d-none");
+  } else {
+    vistaPrevia.removeAttribute("src");
+    vistaPrevia.classList.add("d-none");
+  }
+});
+
+form.addEventListener("submit", (e) => {
+  // Se validan TODOS los campos (no basta con parar en el primer error)
+  const resultados = [...form.elements].filter((el) => el.name).map(validarCampo);
+  if (resultados.includes(false)) {
+    e.preventDefault();
+    form.querySelector(".is-invalid").focus();
+    return;
+  }
+
+  // Si todo es válido, dejamos que el formulario se envíe por POST a registro.php.
+  // El servidor debe volver a validar todo: esta validación se puede saltar desde las herramientas del navegador.
+  console.log("Enviando perfil al servidor...");
+});
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\js\ver-contrasena.js
+===========================================================
+
+// Muestra u oculta lo que se escribe en los campos de contraseña.
+// El botón que activa esto se marca con data-ver-contrasena="id-del-input".
+document.querySelectorAll("[data-ver-contrasena]").forEach((boton) => {
+  const input = document.getElementById(boton.dataset.verContrasena);
+  if (!input) return;
+
+  const iconoMostrar = boton.querySelector("[data-icono='mostrar']");
+  const iconoOcultar = boton.querySelector("[data-icono='ocultar']");
+
+  boton.addEventListener("click", () => {
+    const visible = input.type === "text";
+
+    input.type = visible ? "password" : "text";
+    boton.setAttribute("aria-pressed", String(!visible));
+    boton.setAttribute(
+      "aria-label",
+      visible ? "Mostrar contraseña" : "Ocultar contraseña"
+    );
+    iconoMostrar.classList.toggle("d-none", !visible);
+    iconoOcultar.classList.toggle("d-none", visible);
+
+    // Al cambiar de tipo, el navegador puede vaciar la selección: se deja el
+    // cursor al final para poder seguir escribiendo sin interrupciones.
+    input.focus();
+  });
+});
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\admin.php
+===========================================================
+
+<?php
+session_start();
+include 'conexion.php';
+
+if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
+    header('Location: login.php');
+    exit;
+}
+
+// Eliminar trabajador de ConectaLocal: su perfil, su cuenta de usuario y sus reseñas
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_trabajador'])) {
+    $idEliminar = (int)$_POST['eliminar_trabajador'];
+
+    // Buscar la cuenta de usuario asociada al perfil
+    $stU = $conexion->prepare("SELECT id FROM usuarios WHERE trabajador_id = ?");
+    $stU->bind_param("i", $idEliminar);
+    $stU->execute();
+    $usuarioEliminar = $stU->get_result()->fetch_assoc()['id'] ?? null;
+
+    // 1) Desvincular la cuenta del perfil (para no romper la llave foránea)
+    $st1 = $conexion->prepare("UPDATE usuarios SET trabajador_id = NULL WHERE trabajador_id = ?");
+    $st1->bind_param("i", $idEliminar);
+    $st1->execute();
+
+    // 2) Borrar la cuenta de usuario (sus reseñas se borran en cascada)
+    if ($usuarioEliminar) {
+        $st2 = $conexion->prepare("DELETE FROM usuarios WHERE id = ?");
+        $st2->bind_param("i", $usuarioEliminar);
+        $st2->execute();
+    }
+
+    // 3) Borrar el perfil de trabajador (sus reseñas recibidas se borran en cascada)
+    $st3 = $conexion->prepare("DELETE FROM trabajadores WHERE id = ?");
+    $st3->bind_param("i", $idEliminar);
+    $st3->execute();
+
+    header('Location: admin.php?eliminado=1');
+    exit;
+}
+
+$usuarios = $conexion->query("SELECT id, nombre, correo, rol, creado_en FROM usuarios ORDER BY id DESC");
+$trabajadores = $conexion->query("SELECT t.id, t.nombre, t.whatsapp, o.nombre AS oficio, s.nombre AS sector, t.tarifa, t.disponible, t.destacado, t.creado_en,
+        (SELECT ROUND(AVG(r.estrellas), 1) FROM resenas r WHERE r.trabajador_id = t.id) AS promedio,
+        (SELECT COUNT(*) FROM resenas r WHERE r.trabajador_id = t.id) AS total_resenas
+        FROM trabajadores t JOIN oficios o ON o.id = t.oficio_id JOIN sectores s ON s.id = t.sector_id ORDER BY t.id DESC");
+
+$totalUsuarios = $usuarios->num_rows;
+$totalTrabajadores = $trabajadores->num_rows;
+$disponibles = $conexion->query("SELECT COUNT(*) AS n FROM trabajadores WHERE disponible = 1")->fetch_assoc()['n'];
+$clientes = $conexion->query("SELECT COUNT(*) AS n FROM usuarios WHERE rol = 'cliente'")->fetch_assoc()['n'];
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administración · ConectaLocal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    body { background: #f4f6fb; font-family: "Source Sans 3", system-ui, sans-serif; }
+    .admin-topbar { background: #0b0d12; color: #fff; padding: 1rem 0; }
+    .admin-topbar .brand { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.4rem; color: #fff; text-decoration: none; letter-spacing: -0.03em; }
+    .admin-topbar .brand span { color: #8ea6ff; }
+    .stat-card { background: #fff; border: 1px solid #e1e5ec; border-radius: 16px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(11,13,18,.05); }
+    .stat-icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-size: 1.4rem; }
+    .stat-card h3 { font-size: 1.75rem; font-weight: 800; margin: 0; font-family: "Bricolage Grotesque", sans-serif; }
+    .stat-card p { margin: 0; color: #525c6b; font-size: .9rem; }
+    .panel { background: #fff; border: 1px solid #e1e5ec; border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(11,13,18,.05); }
+    .panel h2 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.25rem; margin-bottom: 1rem; }
+    .table thead th { background: #f4f6fb; color: #525c6b; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid #e1e5ec; }
+    .badge-rol { padding: .35rem .8rem; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+    .badge-admin { background: #e6ebff; color: #2450ff; }
+    .badge-trabajador { background: #e1f4e8; color: #0f5c30; }
+    .badge-cliente { background: #fde8e8; color: #b02a37; }
+  </style>
+</head>
+<body>
+
+  <div class="admin-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="brand" href="index.php">Conecta<span>Local</span> · Admin</a>
+      <div class="d-flex align-items-center gap-3">
+        <span class="small text-secondary d-none d-sm-inline">Sesión de <?php echo htmlspecialchars($_SESSION['nombre']); ?></span>
+        <a href="logout.php" class="btn btn-sm btn-outline-light"><i class="bi bi-box-arrow-right"></i> Salir</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container py-4">
+    <h1 class="mb-4" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;">Panel de administración</h1>
+
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#e6ebff;color:#2450ff;"><i class="bi bi-people"></i></div>
+          <div><h3><?php echo $totalUsuarios; ?></h3><p>Usuarios</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#e1f4e8;color:#0f5c30;"><i class="bi bi-tools"></i></div>
+          <div><h3><?php echo $totalTrabajadores; ?></h3><p>Trabajadores</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#fff3cd;color:#9c6f00;"><i class="bi bi-check-circle"></i></div>
+          <div><h3><?php echo $disponibles; ?></h3><p>Disponibles hoy</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#fde8e8;color:#b02a37;"><i class="bi bi-person-heart"></i></div>
+          <div><h3><?php echo $clientes; ?></h3><p>Clientes</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel mb-4">
+      <h2><i class="bi bi-people me-2"></i>Usuarios registrados</h2>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Registrado</th></tr>
+          </thead>
+          <tbody>
+            <?php while ($u = $usuarios->fetch_assoc()): ?>
+            <tr>
+              <td class="text-muted">#<?php echo $u['id']; ?></td>
+              <td class="fw-semibold"><?php echo htmlspecialchars($u['nombre']); ?></td>
+              <td><?php echo htmlspecialchars($u['correo']); ?></td>
+              <td><span class="badge-rol badge-<?php echo $u['rol']; ?>"><?php echo htmlspecialchars($u['rol']); ?></span></td>
+              <td class="text-muted small"><?php echo date('d-m-Y', strtotime($u['creado_en'] ?? 'now')); ?></td>
+            </tr>
+            <?php endwhile; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2><i class="bi bi-tools me-2"></i>Perfiles de trabajadores</h2>
+      <?php if (isset($_GET['eliminado'])): ?>
+      <div class="alert alert-success py-2"><strong>Listo.</strong> El trabajador fue eliminado de ConectaLocal junto con su cuenta y sus reseñas.</div>
+      <?php endif; ?>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Oficio</th><th>Sector</th><th>Tarifa</th><th>Disponible</th><th>Destacado</th><th>Calificación</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <?php while ($t = $trabajadores->fetch_assoc()): ?>
+            <tr>
+              <td class="text-muted">#<?php echo $t['id']; ?></td>
+              <td class="fw-semibold"><?php echo htmlspecialchars($t['nombre']); ?></td>
+              <td><?php echo htmlspecialchars($t['oficio']); ?></td>
+              <td><?php echo htmlspecialchars($t['sector']); ?></td>
+              <td class="small"><?php echo htmlspecialchars($t['tarifa']); ?></td>
+              <td><span class="badge bg-<?php echo $t['disponible'] ? 'success' : 'danger'; ?>"><?php echo $t['disponible'] ? 'Sí' : 'No'; ?></span></td>
+              <td><?php echo $t['destacado'] ? '⭐' : '—'; ?></td>
+              <td>
+                <?php if ($t['total_resenas'] > 0): ?>
+                <span class="fw-bold <?php echo $t['promedio'] < 3 ? 'text-danger' : ''; ?>">⭐ <?php echo number_format((float)$t['promedio'], 1, ',', ''); ?></span>
+                <span class="text-muted small">(<?php echo $t['total_resenas']; ?>)</span>
+                <?php else: ?>
+                <span class="text-muted small">Sin reseñas</span>
+                <?php endif; ?>
+              </td>
+              <td>
+                <form method="post" action="admin.php" class="m-0" onsubmit="return confirm('¿Eliminar a este trabajador de ConectaLocal? Se borrará su perfil, su cuenta y sus reseñas. Esta acción no se puede deshacer.');">
+                  <button type="submit" name="eliminar_trabajador" value="<?php echo $t['id']; ?>" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</button>
+                </form>
+              </td>
+            </tr>
+            <?php endwhile; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center text-muted small py-4">ConectaLocal · Panel de administración · 2026</footer>
+</body>
+</html>
+
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\conexion.php
+===========================================================
+
+<?php
+// Datos de conexión al servidor local
+$host = "localhost";
+$usuario = "root"; // Usuario por defecto en XAMPP
+$password = ""; // XAMPP no tiene contraseña por defecto
+$base_datos = "conectalocal";
+$puerto = 3307; // Puerto ajustado para evitar conflictos
+
+// Crear la conexión utilizando MySQLi (Orientado a Objetos)
+$conexion = new mysqli($host, $usuario, $password, $base_datos, $puerto);
+
+// Verificar si hay errores en la conexión
+if ($conexion->connect_error) {
+    die("Error crítico de conexión a la base de datos: " . $conexion->connect_error);
+}
+
+// Forzar el uso de caracteres UTF-8 para evitar problemas con tildes y la letra Ñ
+$conexion->set_charset("utf8mb4");
+?>
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\crear_cuenta.php
+===========================================================
+
+<?php
+session_start();
+include 'conexion.php';
+
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = trim($_POST['nombre'] ?? '');
+    $correo = trim($_POST['correo'] ?? '');
+    $clave  = $_POST['password'] ?? '';
+    $rol    = $_POST['rol'] ?? '';
+
+    if (mb_strlen($nombre) < 3) $error = 'Escribe tu nombre completo.';
+    elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) $error = 'Correo inválido.';
+    elseif (strlen($clave) < 8) $error = 'La contraseña debe tener al menos 8 caracteres.';
+    elseif (!in_array($rol, ['trabajador', 'cliente'])) $error = 'Elige un tipo de cuenta.';
+    else {
+        $hash = password_hash($clave, PASSWORD_DEFAULT);
+        $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, correo, password_hash, rol) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $nombre, $correo, $hash, $rol);
+        if ($stmt->execute()) {
+            $_SESSION['usuario_id'] = $conexion->insert_id;
+            $_SESSION['nombre']     = $nombre;
+            $_SESSION['correo']     = $correo;
+            $_SESSION['rol']        = $rol;
+            header('Location: mi_cuenta.php');
+            exit;
+        }
+        $error = 'Ese correo ya está registrado.';
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear cuenta · ConectaLocal</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+    </div>
+  </header>
+
+  <main class="cl-section">
+    <div class="container cl-narrow">
+      <h1 class="cl-title">Crear cuenta</h1>
+      <p class="mb-4">Es gratis. Elige cómo quieres usar ConectaLocal.</p>
+
+      <?php if ($error !== ''): ?>
+      <div class="alert alert-danger" role="alert"><?php echo htmlspecialchars($error); ?></div>
+      <?php endif; ?>
+
+      <form method="post" action="crear_cuenta.php" class="cl-card">
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="mb-3">
+          <label for="correo" class="form-label fw-semibold">Correo</label>
+          <input type="email" class="form-control" id="correo" name="correo" required autocomplete="email">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Contraseña</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="password" name="password" required minlength="8" autocomplete="new-password">
+            <button class="btn btn-outline-secondary" type="button" data-ver-contrasena="password" aria-pressed="false" aria-label="Mostrar contraseña">
+              <i class="bi bi-eye" data-icono="mostrar"></i>
+              <i class="bi bi-eye-slash d-none" data-icono="ocultar"></i>
+            </button>
+          </div>
+          <div class="form-text">Mínimo 8 caracteres. Pulsa el ojo para ver lo que escribes.</div>
+        </div>
+        <div class="mb-4">
+          <label for="rol" class="form-label fw-semibold">¿Qué quieres hacer?</label>
+          <select class="form-select" id="rol" name="rol" required>
+            <option value="">Elige una opción</option>
+            <option value="cliente">Buscar servicios</option>
+            <option value="trabajador">Ofrecer mis servicios</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-lg cl-btn-dark w-100">Crear mi cuenta</button>
+        <p class="mt-3 mb-0 text-center">¿Ya tienes cuenta? <a href="login.php">Entra aquí</a>.</p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+<script src="js/ver-contrasena.js"></script>
+</body>
+</html>
+
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\index.php
+===========================================================
+
+<?php
+session_start();
+include 'conexion.php';
+
+// Datos dinámicos para la portada
+$totalTrabajadores = (int)$conexion->query("SELECT COUNT(*) c FROM trabajadores")->fetch_assoc()['c'];
+$totalOficios      = (int)$conexion->query("SELECT COUNT(*) c FROM oficios")->fetch_assoc()['c'];
+$totalSectores     = (int)$conexion->query("SELECT COUNT(*) c FROM sectores")->fetch_assoc()['c'];
+$totalResenas      = (int)$conexion->query("SELECT COUNT(*) c FROM resenas")->fetch_assoc()['c'];
+
+// Trabajadores destacados o mejor calificados
+$destacados = $conexion->query("
+  SELECT t.id, t.nombre, o.nombre AS oficio, s.nombre AS sector, t.tarifa, t.foto,
+         (SELECT ROUND(AVG(r.estrellas),1) FROM resenas r WHERE r.trabajador_id = t.id) AS promedio,
+         (SELECT COUNT(*) FROM resenas r WHERE r.trabajador_id = t.id) AS total_resenas
+  FROM trabajadores t
+  JOIN oficios o ON o.id = t.oficio_id
+  JOIN sectores s ON s.id = t.sector_id
+  WHERE t.disponible = 1
+  ORDER BY t.destacado DESC, promedio DESC, total_resenas DESC
+  LIMIT 3
+");
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Clave de "mobile first": el ancho de la página sigue al del celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ConectaLocal · Oficios de tu barrio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <style>
+    /* ===== Dinamismo de la portada ===== */
+    .cl-hero { position: relative; overflow: hidden; }
+    .cl-hero::after {
+      content: ""; position: absolute; right: -80px; top: -80px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,162,39,.35) 0%, transparent 70%);
+      animation: clFloat 6s ease-in-out infinite;
+    }
+    @keyframes clFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(18px)} }
+
+    .cl-fade { opacity: 0; transform: translateY(18px); animation: clFade .7s ease forwards; }
+    .cl-fade.d1 { animation-delay: .1s } .cl-fade.d2 { animation-delay: .25s }
+    .cl-fade.d3 { animation-delay: .4s }  .cl-fade.d4 { animation-delay: .55s }
+    @keyframes clFade { to { opacity: 1; transform: none; } }
+
+    .cl-stat {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px; padding: 1rem; text-align: center; color: #fff;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .cl-stat:hover { transform: translateY(-4px); border-color: var(--cl-gold); }
+    .cl-stat .num { font-family: "Bricolage Grotesque", sans-serif; font-size: 2rem; color: var(--cl-gold); }
+    .cl-stat small { color: #b7c0cf; }
+
+    .cl-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .cl-card:hover { transform: translateY(-5px); box-shadow: 0 10px 24px rgba(11,13,18,.10); }
+
+    .cl-step { display: flex; gap: 1rem; align-items: flex-start; }
+    .cl-step-n {
+      flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+      background: var(--cl-ink); color: var(--cl-gold); font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cl-worker { background: #fff; border: 1px solid var(--cl-line); border-radius: 16px; padding: 1.25rem; transition: transform .25s ease, box-shadow .25s ease; height: 100%; }
+    .cl-worker:hover { transform: translateY(-5px); box-shadow: 0 10px 24px rgba(11,13,18,.10); }
+    .cl-worker img { width: 64px; height: 64px; object-fit: cover; border-radius: 50%; border: 2px solid var(--cl-gold); }
+
+    .cl-stars { color: var(--cl-gold); letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+
+    <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+      <div class="d-flex align-items-center">
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+        <a href="mi_cuenta.php" class="btn btn-sm cl-btn-gold me-2">Mi cuenta</a>
+        <?php else: ?>
+        <a href="login.php" class="btn btn-sm cl-btn-gold me-2">Iniciar sesión</a>
+        <?php endif; ?>
+        <button class="cl-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu"
+                aria-controls="menu" aria-label="Abrir menú"><i class="bi bi-list" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="cl-hero" id="buscar">
+      <div class="container">
+        <h1 class="cl-hero-title cl-fade d1">Tu vecindario, a un mensaje de distancia</h1>
+        <div class="cl-fade d2" style="width:90px;height:4px;background:var(--cl-gold);border-radius:2px;margin:0 0 1rem;"></div>
+        <p class="cl-hero-text cl-fade d3">ConectaLocal conecta a las personas con trabajadores locales de confianza. Escríbeles directo por WhatsApp, sin intermediarios.</p>
+        <div class="d-flex flex-column flex-sm-row gap-2 cl-fade d4">
+          <a href="oficios.php" class="btn btn-lg fw-bold" style="background:var(--cl-gold);color:var(--cl-ink);border-radius:999px;">Buscar un servicio</a>
+          <a href="registro.php" class="btn btn-lg fw-bold cl-btn-gold" style="padding:.5rem 1.5rem;">Ofrece tus servicios</a>
+        </div>
+
+        <div class="row g-3 mt-4 pb-2">
+          <div class="col-6 col-md-3"><div class="cl-stat"><div class="num"><?= $totalTrabajadores ?></div><small>Trabajadores</small></div></div>
+          <div class="col-6 col-md-3"><div class="cl-stat"><div class="num"><?= $totalOficios ?></div><small>Oficios</small></div></div>
+          <div class="col-6 col-md-3"><div class="cl-stat"><div class="num"><?= $totalSectores ?></div><small>Sectores</small></div></div>
+          <div class="col-6 col-md-3"><div class="cl-stat"><div class="num"><?= $totalResenas ?></div><small>Reseñas</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cl-section">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+          <div class="col-lg-6">
+            <h2 class="cl-title">¿Por qué existe ConectaLocal?</h2>
+            <p class="lead">Encontrar a alguien que arregle tu casa no debería ser tan difícil. Hoy mucha gente pierde tiempo preguntando por WhatsApp a amigos o buscando en redes sociales, donde es fácil toparse con perfiles falsos o tarifas poco claras.</p>
+            <p class="lead">Al mismo tiempo, los trabajadores locales de oficios no tienen dónde mostrar su trabajo de forma ordenada y segura.</p>
+          </div>
+
+          <div class="col-lg-6">
+            <h2 class="cl-title">¿Por qué usar la página?</h2>
+            <div class="row g-4 mt-2">
+              <div class="col-12">
+                <div class="cl-card">
+                  <i class="bi bi-geo-alt fs-2 mb-2" style="color:var(--cl-gold);"></i>
+                  <h3 class="h6 fw-bold">Cerca de ti</h3>
+                  <p class="small text-secondary mb-0">Trabajadores de tu mismo sector, en Temuco y alrededores.</p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="cl-card">
+                  <i class="bi bi-whatsapp fs-2 mb-2" style="color:var(--cl-gold);"></i>
+                  <h3 class="h6 fw-bold">Contacto directo</h3>
+                  <p class="small text-secondary mb-0">Escribes por WhatsApp y acuerdas el precio tú mismo.</p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="cl-card">
+                  <i class="bi bi-shield-check fs-2 mb-2" style="color:var(--cl-gold);"></i>
+                  <h3 class="h6 fw-bold">Perfiles reales</h3>
+                  <p class="small text-secondary mb-0">Perfiles visibles con oficio, tarifa y disponibilidad actualizada.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cl-section" style="padding-top:0;">
+      <div class="container">
+        <h2 class="cl-title">¿Cómo funciona?</h2>
+        <div class="row g-4 mt-1">
+          <div class="col-md-4">
+            <div class="cl-card h-100">
+              <div class="cl-step">
+                <div class="cl-step-n">1</div>
+                <div><h3 class="h6 fw-bold">Busca tu oficio</h3><p class="small text-secondary mb-0">Filtra por oficio y sector en Temuco.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="cl-card h-100">
+              <div class="cl-step">
+                <div class="cl-step-n">2</div>
+                <div><h3 class="h6 fw-bold">Revisa el perfil</h3><p class="small text-secondary mb-0">Mira tarifa, reseñas y disponibilidad.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="cl-card h-100">
+              <div class="cl-step">
+                <div class="cl-step-n">3</div>
+                <div><h3 class="h6 fw-bold">Escríbele por WhatsApp</h3><p class="small text-secondary mb-0">Acuerda el precio directamente.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <?php if ($destacados && $destacados->num_rows > 0): ?>
+    <section class="cl-section" style="padding-top:0;">
+      <div class="container">
+        <h2 class="cl-title">Trabajadores destacados</h2>
+        <div class="row g-4 mt-1">
+          <?php while ($t = $destacados->fetch_assoc()): ?>
+          <div class="col-md-4">
+            <div class="cl-worker d-flex flex-column text-center align-items-center">
+              <?php if (!empty($t['foto'])): ?>
+                <img src="<?= htmlspecialchars($t['foto']) ?>" alt="Foto de <?= htmlspecialchars($t['nombre']) ?>">
+              <?php else: ?>
+                <span style="width:64px;height:64px;border-radius:50%;background:var(--cl-ink);color:var(--cl-gold);display:flex;align-items:center;justify-content:center;font-size:1.4rem;">
+                  <i class="bi bi-person"></i>
+                </span>
+              <?php endif; ?>
+              <h3 class="h6 fw-bold mt-2 mb-0"><?= htmlspecialchars($t['nombre']) ?></h3>
+              <p class="small text-secondary mb-1"><?= htmlspecialchars($t['oficio']) ?> · <?= htmlspecialchars($t['sector']) ?></p>
+              <?php if ($t['promedio']): ?>
+                <p class="mb-1"><span class="cl-stars">★</span> <?= $t['promedio'] ?> <small class="text-secondary">(<?= $t['total_resenas'] ?>)</small></p>
+              <?php else: ?>
+                <p class="small text-secondary mb-1">Sin reseñas aún</p>
+              <?php endif; ?>
+              <p class="small fw-bold mb-3">Tarifa: <?= htmlspecialchars($t['tarifa']) ?></p>
+              <a href="perfil.php?id=<?= (int)$t['id'] ?>" class="btn btn-sm cl-btn-dark">Ver perfil</a>
+            </div>
+          </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
+  </main>
+
+  <?php include 'menu.php'; ?>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\login.php
+===========================================================
+
+<?php
+session_start();
+include 'conexion.php';
+
+if (isset($_SESSION['usuario_id'])) {
+    header('Location: mi_cuenta.php');
+    exit;
+}
+
+$error = '';
+
+// A dónde volver después de entrar (ej: el perfil desde el que se hizo clic).
+// Viene por POST cuando el usuario ya está viendo el formulario, por eso se
+// lee de los dos lados.
+// Solo se aceptan páginas internas del sitio: así nadie puede usar este
+// parámetro para mandar al usuario a un sitio externo (open redirect).
+$redir = $_POST['redir'] ?? $_GET['redir'] ?? '';
+if (!preg_match('#^[a-zA-Z0-9_-]+\.php(\?[a-zA-Z0-9_=&%.+-]*)?$#', $redir)) {
+    $redir = '';
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $correo = trim($_POST['correo'] ?? '');
+    $clave  = $_POST['password'] ?? '';
+
+    $stmt = $conexion->prepare("SELECT id, nombre, correo, password_hash, rol FROM usuarios WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $u = $stmt->get_result()->fetch_assoc();
+
+    if ($u && password_verify($clave, $u['password_hash'])) {
+        $_SESSION['usuario_id'] = $u['id'];
+        $_SESSION['nombre']     = $u['nombre'];
+        $_SESSION['correo']     = $u['correo'];
+        $_SESSION['rol']        = $u['rol'];
+
+        if ($u['rol'] === 'admin') header('Location: admin.php');
+        elseif ($redir !== '') header('Location: ' . $redir);
+        else header('Location: mi_cuenta.php');
+        exit;
+    }
+    $error = 'Correo o contraseña incorrectos.';
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar · ConectaLocal</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+    </div>
+  </header>
+
+  <main class="cl-section">
+    <div class="container cl-narrow">
+      <h1 class="cl-title">Entrar</h1>
+      <p class="mb-4">Accede a tu cuenta para ofrecer servicios o buscar a alguien de confianza.</p>
+
+      <?php if ($error !== ''): ?>
+      <div class="alert alert-danger" role="alert"><?php echo htmlspecialchars($error); ?></div>
+      <?php endif; ?>
+
+      <form method="post" action="login.php" class="cl-card">
+        <!-- Conserva la página de origen para volver a ella tras entrar -->
+        <?php if ($redir !== ''): ?>
+        <input type="hidden" name="redir" value="<?php echo htmlspecialchars($redir); ?>">
+        <?php endif; ?>
+        <div class="mb-3">
+          <label for="correo" class="form-label fw-semibold">Correo</label>
+          <input type="email" class="form-control" id="correo" name="correo" required autocomplete="email">
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label fw-semibold">Contraseña</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password" aria-describedby="ayuda-clave">
+            <button class="btn btn-outline-secondary" type="button" data-ver-contrasena="password" aria-pressed="false" aria-label="Mostrar contraseña">
+              <i class="bi bi-eye" data-icono="mostrar"></i>
+              <i class="bi bi-eye-slash d-none" data-icono="ocultar"></i>
+            </button>
+          </div>
+          <div class="form-text" id="ayuda-clave">Pulsa el ojo para ver lo que escribes.</div>
+        </div>
+        <button type="submit" class="btn btn-lg cl-btn-dark w-100">Entrar</button>
+        <p class="mt-3 mb-0 text-center">¿No tienes cuenta? <a href="crear_cuenta.php">Crea una aquí</a>.</p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+<script src="js/ver-contrasena.js"></script>
+</body>
+</html>
+
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\logout.php
+===========================================================
+
+<?php
+session_start();
+session_destroy();
+header('Location: index.php');
+exit;
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\menu.php
+===========================================================
+
+<!-- Menú a pantalla completa -->
+<div class="offcanvas offcanvas-end cl-menu" tabindex="-1" id="menu" aria-label="Menú principal" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true" data-bs-scroll="false">
+  <div class="container cl-menu-top">
+    <span class="cl-brand">Conecta<span>Local</span></span>
+    <button type="button" class="cl-burger" data-bs-dismiss="offcanvas" aria-label="Cerrar menú"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+  </div>
+
+  <div class="container cl-menu-main">
+    <nav class="cl-menu-links" aria-label="Secciones">
+      <!-- Oficios del menú, generados desde la BD para no tener que actualizarlos a mano.
+           Cada enlace lleva el filtro en la URL (?oficio=), que buscar.js aplica al cargar. -->
+      <?php
+      $oficiosMenu = [];
+      if (isset($conexion)) {
+        $resOficios = $conexion->query("SELECT nombre FROM oficios ORDER BY nombre");
+        if ($resOficios) $oficiosMenu = $resOficios->fetch_all(MYSQLI_ASSOC);
+      }
+      ?>
+      <?php if ($oficiosMenu): ?>
+      <div class="cl-dropdown">
+        <button class="cl-menu-toggle" type="button" id="oficios-dropdown"
+                data-bs-toggle="dropdown" data-bs-display="static"
+                aria-expanded="false" aria-controls="menu-oficios">
+          <span>Explorar oficios</span>
+          <i class="bi bi-chevron-down" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown-menu cl-dropdown-menu" id="menu-oficios" aria-labelledby="oficios-dropdown">
+          <li><a class="dropdown-item" href="oficios.php">Ver todos los oficios</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <?php foreach ($oficiosMenu as $oficioMenu): ?>
+          <li>
+            <a class="dropdown-item"
+               href="oficios.php?oficio=<?= rawurlencode($oficioMenu['nombre']) ?>"><?= htmlspecialchars($oficioMenu['nombre']) ?></a>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+      <?php endif; ?>
+
+      <!-- data-open-modal lo atiende el script de abajo: cierra el menú y luego abre el modal -->
+      <button class="cl-menu-toggle" type="button" data-open-modal="como-funciona-modal">
+        <span>Cómo funciona</span>
+        <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+      </button>
+
+      <button class="cl-menu-toggle" type="button" data-open-modal="ayuda-modal">
+        <span>Centro de Ayuda</span>
+        <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+      </button>
+
+      <button class="cl-menu-toggle" type="button" data-open-modal="faq-modal">
+        <span>Preguntas Frecuentes</span>
+        <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+      </button>
+
+      <?php if (isset($_SESSION['usuario_id'])): ?>
+      <a href="mi_cuenta.php"><span>Mi cuenta</span><i class="bi bi-person-circle" aria-hidden="true"></i></a>
+      <a href="logout.php"><span>Cerrar sesión</span><i class="bi bi-box-arrow-right" aria-hidden="true"></i></a>
+      <?php endif; ?>
+    </nav>
+
+    <div class="cl-menu-foot">
+      <a class="btn btn-lg cl-btn-blue" href="registro.php">Ofrece tus servicios <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+      <p>Oficios de tu ciudad, a un mensaje de distancia.</p>
+      <a href="#" class="small text-muted mt-2 d-inline-block" data-open-modal="terminos-modal">Términos y Privacidad</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Cómo funciona -->
+<div class="modal fade" id="como-funciona-modal" tabindex="-1" aria-labelledby="como-funciona-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-light">
+      <div class="modal-header border-0">
+        <h2 class="modal-title fs-4 fw-bold" id="como-funciona-label">Cómo funciona</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <ol class="list-unstyled cl-steps">
+          <li class="d-flex align-items-start mb-3">
+            <span class="cl-step-num">1</span>
+            <span>Busca tu oficio</span>
+          </li>
+          <li class="d-flex align-items-start mb-3">
+            <span class="cl-step-num">2</span>
+            <span>Contacta directo por WhatsApp</span>
+          </li>
+          <li class="d-flex align-items-start">
+            <span class="cl-step-num">3</span>
+            <span>Acuerda el precio con el maestro</span>
+          </li>
+        </ol>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Centro de Ayuda -->
+<div class="modal fade" id="ayuda-modal" tabindex="-1" aria-labelledby="ayuda-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-light">
+      <div class="modal-header border-0">
+        <h2 class="modal-title fs-4 fw-bold" id="ayuda-label">Centro de Ayuda</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-secondary">¿Necesitas ayuda con tu cuenta, tu perfil o una reseña? Escríbenos y un asesor te responde a la brevedad.</p>
+        <ul class="list-unstyled m-0">
+          <li class="d-flex align-items-start mb-3">
+            <span class="cl-step-num"><i class="bi bi-whatsapp"></i></span>
+            <span><strong>WhatsApp</strong><br><a href="https://wa.me/56912345678" target="_blank" rel="noopener">+56 9 1234 5678</a></span>
+          </li>
+          <li class="d-flex align-items-start mb-3">
+            <span class="cl-step-num"><i class="bi bi-envelope"></i></span>
+            <span><strong>Correo</strong><br><a href="mailto:hola@conectalocal.cl">hola@conectalocal.cl</a></span>
+          </li>
+          <li class="d-flex align-items-start">
+            <span class="cl-step-num"><i class="bi bi-clock"></i></span>
+            <span><strong>Horario</strong><br>Lunes a sábado, 9:00 a 18:00 hrs.</span>
+          </li>
+        </ul>
+        <div class="alert alert-warning py-2 mb-0"><strong>Recuerda:</strong> nunca pagues por adelantado. Acuerda el trabajo y el precio por escrito antes de empezar.</div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Preguntas Frecuentes -->
+<div class="modal fade" id="faq-modal" tabindex="-1" aria-labelledby="faq-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content bg-light">
+      <div class="modal-header border-0">
+        <h2 class="modal-title fs-4 fw-bold" id="faq-label">Preguntas Frecuentes</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="accordion accordion-flush" id="faq-acordeon">
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                ¿Qué pasa si un trabajador hace un mal trabajo?
+              </button>
+            </h3>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faq-acordeon">
+              <div class="accordion-body">Tu reseña queda visible en su perfil y baja su promedio de estrellas, así otros vecinos saben qué esperar. Si un trabajador acumula malas reseñas, los administradores revisan su cuenta y pueden <strong>eliminar su perfil</strong> de ConectaLocal.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                ¿Usar ConectaLocal tiene algún costo?
+              </button>
+            </h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faq-acordeon">
+              <div class="accordion-body">No. Buscar, contactar y publicar es gratis tanto para clientes como para trabajadores. El precio del trabajo se acuerda directamente entre ustedes, sin comisiones de por medio.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                ¿Cómo contacto a un trabajador?
+              </button>
+            </h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faq-acordeon">
+              <div class="accordion-body">Entra a su perfil y presiona «Escribir por WhatsApp». Conversen, acuerden el trabajo y el precio antes de empezar. Te recomendamos <strong>no pagar por adelantado</strong>.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                ¿Cómo dejo una reseña?
+              </button>
+            </h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faq-acordeon">
+              <div class="accordion-body">Necesitas una cuenta de cliente. Después de recibir el servicio, entra al perfil del trabajador, elige de 1 a 5 estrellas y escribe un comentario. Si ya lo habías calificado, tu reseña se actualiza con la nueva.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                ¿Puedo confiar en los trabajadores de la página?
+              </button>
+            </h3>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faq-acordeon">
+              <div class="accordion-body">Cada trabajador tiene estrellas y comentarios de clientes reales, y los administradores revisan los perfiles con malas calificaciones. Aun así, acuerda todo por escrito por WhatsApp y evita pagar por adelantado.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                Soy trabajador, ¿cómo publico mi servicio?
+              </button>
+            </h3>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faq-acordeon">
+              <div class="accordion-body">Crea una cuenta de trabajador, entra a «Mi cuenta» y presiona «Publicar mi perfil». Completa tus datos y tu servicio aparecerá en la búsqueda de tu sector. ¡Es gratis!</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Términos y Privacidad -->
+<div class="modal fade" id="terminos-modal" tabindex="-1" aria-labelledby="terminos-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content bg-light">
+      <div class="modal-header border-0">
+        <h2 class="modal-title fs-4 fw-bold" id="terminos-label">Términos y Privacidad</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <h3 class="h6 fw-bold">Uso de ConectaLocal</h3>
+        <p class="small">ConectaLocal es un proyecto de práctica que conecta a vecinos con trabajadores locales. Los perfiles los publican los propios usuarios; revisamos las reseñas, pero no garantizamos los trabajos ni los precios publicados.</p>
+        <h3 class="h6 fw-bold">Sin pagos por la plataforma</h3>
+        <p class="small">No cobramos comisiones ni intervenimos en los pagos. Tú acuerdas el precio directamente con el trabajador por WhatsApp. Nunca pagues por adelantado.</p>
+        <h3 class="h6 fw-bold">Tu información</h3>
+        <p class="small">Tu correo y tu número de WhatsApp se usan solo para crear tu cuenta y para que otros usuarios te contacten. No los compartimos con terceros ni los usamos para publicidad.</p>
+        <h3 class="h6 fw-bold">Tu cuenta</h3>
+        <p class="small">Puedes editar tus datos cuando quieras desde «Mi cuenta». Para borrar tu cuenta definitivamente, escríbenos al correo del Centro de Ayuda.</p>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Abrir modales desde el menú: primero se cierra el menú a pantalla completa y,
+// cuando termina de ocultarse (evento hidden.bs.offcanvas), se abre el modal.
+// Así el modal nunca queda detrás del menú (el menú usa z-index 1055 y los
+// modales 1050). No se usan data-bs-toggle + data-bs-dismiss juntos porque
+// Bootstrap resolvería el dismiss con el data-bs-target del modal, no del menú.
+document.addEventListener('DOMContentLoaded', function () {
+  if (!window.bootstrap) return; // sin Bootstrap no hay menú ni modales que manejar
+
+  var menu = document.getElementById('menu');
+  var offcanvas = menu ? bootstrap.Offcanvas.getOrCreateInstance(menu) : null;
+
+  document.querySelectorAll('[data-open-modal]').forEach(function (boton) {
+    boton.addEventListener('click', function (e) {
+      e.preventDefault();
+      var modalEl = document.getElementById(boton.getAttribute('data-open-modal'));
+      if (!modalEl) return;
+
+      var abrirModal = function () {
+        bootstrap.Modal.getOrCreateInstance(modalEl).show();
+      };
+
+      if (offcanvas && menu.classList.contains('show')) {
+        menu.addEventListener('hidden.bs.offcanvas', abrirModal, { once: true });
+        offcanvas.hide();
+      } else {
+        abrirModal();
+      }
+    });
+  });
+});
+</script>
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\mi_cuenta.php
+===========================================================
+
+<?php
+session_start();
+include 'conexion.php';
+
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$trabajador = null;
+$promedio = 0;
+$totalResenas = 0;
+$ini = '';
+if ($_SESSION['rol'] === 'trabajador') {
+    $stmt = $conexion->prepare("SELECT t.*, o.nombre AS oficio, s.nombre AS sector
+                                FROM trabajadores t
+                                JOIN oficios o ON o.id = t.oficio_id
+                                JOIN sectores s ON s.id = t.sector_id
+                                WHERE t.id = (SELECT trabajador_id FROM usuarios WHERE id = ?)");
+    $stmt->bind_param("i", $_SESSION['usuario_id']);
+    $stmt->execute();
+    $trabajador = $stmt->get_result()->fetch_assoc();
+
+    if ($trabajador) {
+        // Estadísticas de reseñas para el panel
+        $stP = $conexion->prepare("SELECT ROUND(AVG(estrellas), 1) AS prom, COUNT(*) AS total FROM resenas WHERE trabajador_id = ?");
+        $stP->bind_param("i", $trabajador['id']);
+        $stP->execute();
+        $filaP = $stP->get_result()->fetch_assoc();
+        $promedio = (float)($filaP['prom'] ?? 0);
+        $totalResenas = (int)$filaP['total'];
+
+        // Iniciales del nombre para el avatar
+        $partes = explode(' ', $trabajador['nombre']);
+        $ini = strtoupper(implode('', array_map(fn($p) => mb_substr($p, 0, 1), array_slice($partes, 0, 2))));
+    }
+}
+
+// Datos del panel del cliente: sus reseñas y estadísticas
+$misResenas = null;
+$totalMisResenas = 0;
+$promedioDado = 0;
+$disponiblesHoy = 0;
+$iniCliente = '';
+if ($_SESSION['rol'] === 'cliente') {
+    // Reseñas que el cliente ha dejado, con el nombre del trabajador y su oficio
+    $stR = $conexion->prepare("SELECT r.estrellas, r.comentario, r.creado_en, t.id AS trabajador_id, t.nombre AS trabajador, o.nombre AS oficio
+                               FROM resenas r
+                               JOIN trabajadores t ON t.id = r.trabajador_id
+                               JOIN oficios o ON o.id = t.oficio_id
+                               WHERE r.usuario_id = ?
+                               ORDER BY r.creado_en DESC");
+    $stR->bind_param("i", $_SESSION['usuario_id']);
+    $stR->execute();
+    $misResenas = $stR->get_result();
+    $totalMisResenas = $misResenas->num_rows;
+
+    // Promedio de estrellas que suele dar
+    $stD = $conexion->prepare("SELECT ROUND(AVG(estrellas), 1) AS prom FROM resenas WHERE usuario_id = ?");
+    $stD->bind_param("i", $_SESSION['usuario_id']);
+    $stD->execute();
+    $promedioDado = (float)($stD->get_result()->fetch_assoc()['prom'] ?? 0);
+
+    // Trabajadores disponibles hoy en toda la plataforma
+    $disponiblesHoy = (int)$conexion->query("SELECT COUNT(*) AS n FROM trabajadores WHERE disponible = 1")->fetch_assoc()['n'];
+
+    // Iniciales para el avatar
+    $partesC = explode(' ', $_SESSION['nombre']);
+    $iniCliente = strtoupper(implode('', array_map(fn($p) => mb_substr($p, 0, 1), array_slice($partesC, 0, 2))));
+}
+
+// Dibuja las estrellitas (misma función que en perfil.php)
+function estrellasHtml($n) {
+    $salida = '<span class="cl-stars" aria-hidden="true">';
+    for ($i = 1; $i <= 5; $i++) {
+        $salida .= $i <= round((float)$n) ? '★' : '☆';
+    }
+    return $salida . '</span><span class="visually-hidden">' . round((float)$n, 1) . ' de 5 estrellas</span>';
+}
+
+// Cambiar disponibilidad (solo trabajador con perfil publicado)
+if ($trabajador && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_disponible'])) {
+    $nuevo = $trabajador['disponible'] ? 0 : 1;
+    $st = $conexion->prepare("UPDATE trabajadores SET disponible = ? WHERE id = ?");
+    $st->bind_param("ii", $nuevo, $trabajador['id']);
+    $st->execute();
+    // Redirigir para que al recargar no se repita el cambio
+    header('Location: mi_cuenta.php?ok=1');
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi cuenta · ConectaLocal</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+      <a href="logout.php" class="btn btn-sm cl-btn-gold">Cerrar sesión</a>
+    </div>
+  </header>
+
+  <main class="cl-section">
+    <div class="container cl-narrow">
+      <h1 class="cl-title">Hola, <?php echo htmlspecialchars($_SESSION['nombre']); ?></h1>
+      <p class="text-secondary mb-4">Cuenta: <?php echo htmlspecialchars($_SESSION['correo']); ?> · Rol: <?php echo htmlspecialchars($_SESSION['rol']); ?></p>
+
+      <?php if ($_SESSION['rol'] === 'admin'): ?>
+        <a href="admin.php" class="btn cl-btn-dark me-2">Ir al panel de administración</a>
+        <a href="index.php" class="btn btn-outline-dark">Ver el sitio</a>
+      <?php elseif ($_SESSION['rol'] === 'cliente'): ?>
+        <!-- Resumen de la cuenta -->
+        <div class="cl-panel mb-3">
+          <div class="d-flex align-items-center gap-3 flex-wrap">
+            <div class="cl-avatar" aria-hidden="true"><?php echo htmlspecialchars($iniCliente); ?></div>
+            <div class="flex-grow-1">
+              <h2 class="h5 fw-bold mb-0"><?php echo htmlspecialchars($_SESSION['nombre']); ?></h2>
+              <p class="text-secondary small mb-0"><?php echo htmlspecialchars($_SESSION['correo']); ?></p>
+            </div>
+            <a href="oficios.php" class="btn cl-btn-dark">Buscar servicios</a>
+          </div>
+        </div>
+
+        <!-- Estadísticas del cliente -->
+        <div class="row g-3 mb-3">
+          <div class="col-6 col-md-4">
+            <div class="cl-stat">
+              <div class="cl-stat-icon" style="background:#e6ebff;color:#2450ff;"><i class="bi bi-chat-left-text"></i></div>
+              <div><h3><?php echo $totalMisResenas; ?></h3><p>Reseña<?php echo $totalMisResenas != 1 ? 's' : ''; ?> escrita<?php echo $totalMisResenas != 1 ? 's' : ''; ?></p></div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="cl-stat">
+              <div class="cl-stat-icon" style="background:#fff3cd;color:#9c6f00;"><i class="bi bi-star-fill"></i></div>
+              <div><h3><?php echo $totalMisResenas > 0 ? number_format($promedioDado, 1, ',', '') : '—'; ?></h3><p>Promedio que das</p></div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="cl-stat">
+              <div class="cl-stat-icon" style="background:#e1f4e8;color:#0f5c30;"><i class="bi bi-people"></i></div>
+              <div><h3><?php echo $disponiblesHoy; ?></h3><p>Disponibles hoy</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reseñas que el cliente ha dejado -->
+        <div class="cl-panel">
+          <h2 class="h6 fw-bold mb-3">Mis reseñas</h2>
+          <?php if ($totalMisResenas > 0): ?>
+          <ul class="cl-resenas">
+            <?php while ($r = $misResenas->fetch_assoc()): ?>
+            <li class="cl-resena">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-1">
+                <div>
+                  <strong><?php echo htmlspecialchars($r['trabajador']); ?></strong>
+                  <span class="text-secondary small">· <?php echo htmlspecialchars($r['oficio']); ?></span>
+                </div>
+                <?php echo estrellasHtml($r['estrellas']); ?>
+              </div>
+              <?php if ($r['comentario'] !== ''): ?>
+              <p><?php echo htmlspecialchars($r['comentario']); ?></p>
+              <?php endif; ?>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-secondary"><?php echo date('d-m-Y', strtotime($r['creado_en'])); ?></small>
+                <a href="perfil.php?id=<?php echo $r['trabajador_id']; ?>#resenas" class="small fw-semibold">Ver / editar reseña</a>
+              </div>
+            </li>
+            <?php endwhile; ?>
+          </ul>
+          <?php else: ?>
+          <p class="text-secondary mb-2">Aún no has dejado reseñas.</p>
+          <p class="small text-secondary mb-0">Después de contratar un servicio, entra al perfil del trabajador y califícalo con estrellas: ayudas a los demás vecinos a elegir mejor.</p>
+          <?php endif; ?>
+        </div>
+      <?php else: ?>
+        <?php if ($trabajador): ?>
+          <?php if (isset($_GET['ok'])): ?>
+          <div class="alert alert-success py-2"><strong>Listo.</strong> Tu disponibilidad se actualizó.</div>
+          <?php endif; ?>
+
+          <!-- Resumen del perfil -->
+          <div class="cl-panel mb-3">
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+              <div class="cl-avatar" aria-hidden="true"><?php echo htmlspecialchars($ini); ?></div>
+              <div class="flex-grow-1">
+                <h2 class="h5 fw-bold mb-0"><?php echo htmlspecialchars($trabajador['nombre']); ?></h2>
+                <p class="text-secondary small mb-1"><?php echo htmlspecialchars($trabajador['oficio']); ?> · <?php echo htmlspecialchars($trabajador['sector']); ?></p>
+                <?php if ($trabajador['destacado']): ?>
+                <span class="badge bg-warning text-dark">⭐ Destacado</span>
+                <?php endif; ?>
+              </div>
+              <a href="perfil.php?id=<?php echo $trabajador['id']; ?>" class="btn cl-btn-dark">Ver mi perfil público</a>
+            </div>
+          </div>
+
+          <!-- Estadísticas del trabajador -->
+          <div class="row g-3 mb-3">
+            <div class="col-6 col-md-4">
+              <div class="cl-stat">
+                <div class="cl-stat-icon" style="background:<?php echo $trabajador['disponible'] ? '#e1f4e8' : '#fde8e8'; ?>;color:<?php echo $trabajador['disponible'] ? '#0f5c30' : '#b02a37'; ?>;"><i class="bi <?php echo $trabajador['disponible'] ? 'bi-check-circle' : 'bi-pause-circle'; ?>"></i></div>
+                <div><h3><?php echo $trabajador['disponible'] ? 'Disponible' : 'Ocupado'; ?></h3><p>Tu estado</p></div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="cl-stat">
+                <div class="cl-stat-icon" style="background:#fff3cd;color:#9c6f00;"><i class="bi bi-star-fill"></i></div>
+                <div><h3><?php echo $totalResenas > 0 ? number_format($promedio, 1, ',', '') : '—'; ?></h3><p>Calificación</p></div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="cl-stat">
+                <div class="cl-stat-icon" style="background:#e6ebff;color:#2450ff;"><i class="bi bi-chat-left-text"></i></div>
+                <div><h3><?php echo $totalResenas; ?></h3><p>Reseña<?php echo $totalResenas != 1 ? 's' : ''; ?></p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Control de disponibilidad -->
+          <div class="cl-panel">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+              <div>
+                <h2 class="h6 fw-bold mb-1">Tu disponibilidad</h2>
+                <p class="small text-secondary mb-0">
+                  <?php echo $trabajador['disponible'] ? 'Los clientes pueden escribirte por WhatsApp.' : 'Tu tarjeta muestra "Ocupado" y los clientes no pueden contactarte.'; ?>
+                </p>
+              </div>
+              <span class="cl-estado <?php echo $trabajador['disponible'] ? 'si' : 'no'; ?>"><?php echo $trabajador['disponible'] ? 'Disponible' : 'Ocupado'; ?></span>
+            </div>
+            <form method="post" action="mi_cuenta.php" class="mt-3 mb-0">
+              <button type="submit" name="toggle_disponible" class="btn fw-bold <?php echo $trabajador['disponible'] ? 'btn-outline-danger' : 'cl-btn-wa'; ?>">
+                <?php echo $trabajador['disponible'] ? 'Cambiar a no disponible' : 'Cambiar a disponible'; ?>
+              </button>
+            </form>
+          </div>
+        <?php else: ?>
+          <div class="cl-panel text-center py-4">
+            <div class="cl-stat-icon mx-auto mb-3" style="background:#e6ebff;color:#2450ff;"><i class="bi bi-megaphone"></i></div>
+            <h2 class="h5 fw-bold">Aún no has publicado tu perfil de trabajador</h2>
+            <p class="text-secondary">Publica tu servicio gratis y aparece en la búsqueda de tu barrio.</p>
+            <a href="registro.php" class="btn cl-btn-dark">Publicar mi perfil</a>
+          </div>
+        <?php endif; ?>
+      <?php endif; ?>
+    </div>
+  </main>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\oficios.php
+===========================================================
+
+<?php
+session_start();
+// 1. Incluir el archivo de conexión a la base de datos
+include 'conexion.php';
+
+// 2. Consulta SQL para traer los trabajadores con el nombre de su oficio y sector,
+//    más el promedio de estrellas y cuántas reseñas tiene cada uno
+$sql = "SELECT t.id, t.nombre, o.nombre AS oficio, s.nombre AS sector, t.tarifa, t.descripcion, t.whatsapp, t.disponible, t.destacado,
+        (SELECT ROUND(AVG(r.estrellas), 1) FROM resenas r WHERE r.trabajador_id = t.id) AS promedio,
+        (SELECT COUNT(*) FROM resenas r WHERE r.trabajador_id = t.id) AS total_resenas
+        FROM trabajadores t 
+        JOIN oficios o ON o.id = t.oficio_id 
+        JOIN sectores s ON s.id = t.sector_id 
+        ORDER BY t.destacado DESC, t.nombre";
+
+// 3. Ejecutar la consulta
+$resultado = $conexion->query($sql);
+
+// Perfil del trabajador con sesión iniciada (para no ofrecerle contactarse a sí mismo)
+$miTrabajadorId = null;
+if (isset($_SESSION['usuario_id'])) {
+    $stMi = $conexion->prepare("SELECT trabajador_id FROM usuarios WHERE id = ?");
+    $stMi->bind_param("i", $_SESSION['usuario_id']);
+    $stMi->execute();
+    $miTrabajadorId = $stMi->get_result()->fetch_assoc()['trabajador_id'] ?? null;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Clave de "mobile first": el ancho de la página sigue al del celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ConectaLocal · Oficios de tu barrio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+      <div class="d-flex align-items-center">
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+        <a href="mi_cuenta.php" class="btn btn-sm cl-btn-gold me-2">Mi cuenta</a>
+        <?php else: ?>
+        <a href="login.php" class="btn btn-sm cl-btn-gold me-2">Iniciar sesión</a>
+        <?php endif; ?>
+        <button class="cl-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu"
+              aria-controls="menu" aria-label="Abrir menú"><i class="bi bi-list" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <?php include 'menu.php'; ?>
+
+  <main>
+    <section class="cl-hero" id="buscar">
+      <div class="container">
+        <h1 class="cl-hero-title">Encuentra quién te lo arregle, en tu mismo barrio</h1>
+        <p class="cl-hero-text">Gasfíteres, electricistas y oficios locales. Escríbeles directo por WhatsApp.</p>
+
+        <form class="cl-search" id="form-busqueda" role="search">
+          <div class="btn-group w-100 mb-3" role="group" aria-label="Tipo de búsqueda">
+            <button type="button" class="btn btn-lg btn-primary active">Quiero contratar</button>
+            <a href="registro.php" class="btn btn-lg btn-outline-primary">Quiero trabajar</a>
+          </div>
+
+          <label for="texto" class="visually-hidden">Qué necesitas</label>
+          <input type="search" class="form-control form-control-lg" id="texto" placeholder="¿Qué necesitas? Ej: filtración">
+
+          <label for="sector" class="visually-hidden">Sector</label>
+          <select class="form-select form-select-lg" id="sector">
+            <option value="">Todo Temuco</option>
+            <option>Temuco</option>
+            <option>Labranza</option>
+            <option>Pedro de Valdivia</option>
+            <option>Padre las Casas</option>
+            <option>Fundo El Carmen</option>
+            <option>Pueblo Nuevo</option>
+            <option>Centro</option>
+            <option>Amanecer</option>
+            <option>Santa Rosa</option>
+          </select>
+
+          <button type="submit" class="btn btn-lg cl-btn-dark">Buscar</button>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="solo-disponibles">
+            <label class="form-check-label" for="solo-disponibles">Mostrar solo quienes están disponibles</label>
+          </div>
+        </form>
+      </div>
+    </section>
+            <section class="cl-section" id="oficios">
+      <div class="container">
+        <h2 class="cl-title">Explora oficios</h2>
+        <div class="cl-chips" id="chips" role="group" aria-label="Filtrar por oficio">
+          <button type="button" class="cl-chip activo" data-oficio="Todos" aria-pressed="true">Todos</button>
+          <?php
+          // Todos los oficios de la BD, tengan o no trabajadores registrados.
+          // Si un oficio no tiene tarjetas, el filtro muestra el mensaje de "sin resultados".
+          $listaOficios = $conexion->query("SELECT nombre FROM oficios ORDER BY nombre");
+          while ($o = $listaOficios->fetch_assoc()) {
+              echo '<button type="button" class="cl-chip" data-oficio="' . htmlspecialchars($o['nombre']) . '" aria-pressed="false">' . htmlspecialchars($o['nombre']) . '</button>';
+          }
+          ?>
+        </div>
+        <p class="cl-count" id="contador" aria-live="polite"></p>
+        <div class="row g-4 mt-4" id="tarjetas">
+    <?php
+    // Comprobar si hay resultados en la base de datos
+    if ($resultado->num_rows > 0) {
+        // Recorrer cada trabajador encontrado
+        $i = 0; // Posición de la tarjeta, para escalonar la animación de entrada
+        while($row = $resultado->fetch_assoc()) {
+            $i++;
+            
+            // Lógica para etiquetas (Badges)
+            $badgeDestacado = $row['destacado'] ? '<span class="badge bg-warning text-dark me-1">⭐ Destacado</span>' : '';
+            $badgeDispo = $row['disponible'] ? '<span class="badge bg-success">Disponible</span>' : '<span class="badge bg-danger">Ocupado</span>';
+
+            // Estrellas promedio del trabajador (solo si tiene reseñas)
+            $estrellasCard = '';
+            if ($row['total_resenas'] > 0) {
+                $estrellasCard = '<p class="cl-mini-estrellas mb-2">★ ' . number_format((float)$row['promedio'], 1, ',', '')
+                               . ' <span class="text-secondary fw-normal">(' . $row['total_resenas'] . ' reseña' . ($row['total_resenas'] != 1 ? 's' : '') . ')</span></p>';
+            }
+            
+            // Botones de la tarjeta según la sesión
+            if (!isset($_SESSION['usuario_id'])) {
+                // Sin sesión: no se puede ver el perfil ni contactar
+                $botones = '<a href="login.php" class="btn cl-btn-dark w-100 fw-bold">Inicia sesión para contactar</a>';
+            } else {
+                // Si la tarjeta es del trabajador con sesión, no se le ofrece contactarse a sí mismo
+                if ($miTrabajadorId && (int)$miTrabajadorId === (int)$row['id']) {
+                    $btnContacto = '<span class="btn btn-secondary w-50 fw-bold disabled" aria-disabled="true">Es tu perfil</span>';
+                } elseif ($row['disponible']) {
+                    $btnContacto = '<a href="https://wa.me/' . htmlspecialchars($row['whatsapp']) . '" target="_blank" class="btn cl-btn-wa w-50 fw-bold">Contactar</a>';
+                } else {
+                    $btnContacto = '<button class="btn btn-secondary w-50 fw-bold" disabled>No disp.</button>';
+                }
+                $botones = '<a href="perfil.php?id=' . $row['id'] . '" class="btn btn-outline-dark w-50 fw-bold">Ver Perfil</a>' . $btnContacto;
+            }
+
+            // Dibujar la tarjeta HTML inyectando las variables de PHP
+            echo '
+            <div class="col-12 col-md-6 col-lg-4" data-oficio="' . htmlspecialchars($row['oficio']) . '" data-sector="' . htmlspecialchars($row['sector']) . '" data-disponible="' . ($row['disponible'] ? '1' : '0') . '">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-3 cl-tarjeta" style="--i:' . $i . '">
+                    <div class="mb-2">
+                        ' . $badgeDestacado . $badgeDispo . '
+                    </div>
+                    <h5 class="card-title fw-bold mt-2 mb-0" style="color: var(--cl-ink);">' . htmlspecialchars($row['nombre']) . '</h5>
+                    <p class="text-secondary small mb-2">' . htmlspecialchars($row['oficio']) . ' • ' . htmlspecialchars($row['sector']) . '</p>
+                    ' . $estrellasCard . '
+                    <p class="card-text small text-muted mb-3">' . htmlspecialchars($row['descripcion']) . '</p>
+                    <div class="mt-auto">
+                        <p class="fw-bold mb-3" style="color: var(--cl-ink);">' . htmlspecialchars($row['tarifa']) . '</p>
+                        
+                        <!-- Botones según la sesión -->
+                        <div class="d-flex gap-2">
+                            ' . $botones . '
+                        </div>
+
+                    </div>
+                </div>
+            </div>';
+        }
+    } else {
+        echo '<div class="col-12 text-center"><p class="text-muted">Aún no hay trabajadores registrados en la plataforma.</p></div>';
+    }
+    ?>
+</div>
+
+        <div class="cl-vacio d-none" id="vacio">
+          <p class="fw-bold mb-1">No encontramos a nadie con esos filtros.</p>
+          <p class="mb-0">Prueba con otro sector o desactiva "solo disponibles".</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/buscar.js"></script>
+</body>
+</html>
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\perfil.php
+===========================================================
+
+<?php
+session_start();
+include 'conexion.php';
+
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Sin sesión iniciada no se puede contactar, pero el perfil sí se muestra
+$logueado = isset($_SESSION['usuario_id']);
+
+// El perfil se carga siempre: nombre, oficio, sector, tarifa y descripción son
+// datos públicos y son los que le sirven al visitante para decidir si entrar.
+// El WhatsApp NO se consulta sin sesión, así nunca viaja al navegador de alguien
+// que no entró. Quien no tiene cuenta ve el perfil con el contacto bloqueado.
+$t = null;
+if ($id > 0) {
+    $stmt = $conexion->prepare("SELECT t.nombre, o.nombre AS oficio, s.nombre AS sector, t.tarifa, t.descripcion, t.disponible, t.destacado
+            FROM trabajadores t
+            JOIN oficios o ON o.id = t.oficio_id
+            JOIN sectores s ON s.id = t.sector_id
+            WHERE t.id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $t = $stmt->get_result()->fetch_assoc();
+
+    if ($t && $logueado) {
+        $stmtW = $conexion->prepare("SELECT whatsapp FROM trabajadores WHERE id = ?");
+        $stmtW->bind_param("i", $id);
+        $stmtW->execute();
+        $filaW = $stmtW->get_result()->fetch_assoc();
+        if ($filaW) $t['whatsapp'] = $filaW['whatsapp'];
+    }
+}
+
+// Guardar la reseña enviada por el formulario (solo clientes con sesión)
+$errorResena = '';
+if ($t && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['estrellas'])) {
+    if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'cliente') {
+        $errorResena = 'Solo los clientes con cuenta pueden dejar una reseña.';
+    } else {
+        $estrellas  = (int)($_POST['estrellas'] ?? 0);
+        $comentario = trim($_POST['comentario'] ?? '');
+        if ($estrellas < 1 || $estrellas > 5) {
+            $errorResena = 'Elige de 1 a 5 estrellas.';
+        } elseif (mb_strlen($comentario) > 300) {
+            $errorResena = 'El comentario no puede superar los 300 caracteres.';
+        } else {
+            // Un cliente deja UNA reseña por trabajador; si ya tenía, se actualiza
+            $st = $conexion->prepare("INSERT INTO resenas (trabajador_id, usuario_id, estrellas, comentario)
+                                      VALUES (?, ?, ?, ?)
+                                      ON DUPLICATE KEY UPDATE estrellas = VALUES(estrellas), comentario = VALUES(comentario), creado_en = CURRENT_TIMESTAMP");
+            $st->bind_param("iiis", $id, $_SESSION['usuario_id'], $estrellas, $comentario);
+            $st->execute();
+            // Redirigir para que al recargar la página no se envíe dos veces
+            header('Location: perfil.php?id=' . $id . '#resenas');
+            exit;
+        }
+    }
+}
+
+// Reseñas del trabajador, promedio y la reseña del cliente actual (si tiene)
+$resenas = null;
+$promedio = 0;
+$totalResenas = 0;
+$resenaMia = null;
+if ($t) {
+    // El promedio es público: se muestra también en el adelanto para visitantes
+    $stP = $conexion->prepare("SELECT ROUND(AVG(estrellas), 1) AS prom, COUNT(*) AS total FROM resenas WHERE trabajador_id = ?");
+    $stP->bind_param("i", $id);
+    $stP->execute();
+    $filaP = $stP->get_result()->fetch_assoc();
+    $promedio = (float)($filaP['prom'] ?? 0);
+    $totalResenas = (int)$filaP['total'];
+
+    // Los comentarios firmados con nombre de cliente son privados: solo con sesión
+    if ($logueado) {
+        $stR = $conexion->prepare("SELECT r.estrellas, r.comentario, r.creado_en, u.nombre AS cliente
+                                   FROM resenas r JOIN usuarios u ON u.id = r.usuario_id
+                                   WHERE r.trabajador_id = ? ORDER BY r.creado_en DESC");
+        $stR->bind_param("i", $id);
+        $stR->execute();
+        $resenas = $stR->get_result();
+    }
+
+    if (isset($_SESSION['usuario_id']) && $_SESSION['rol'] === 'cliente') {
+        $stM = $conexion->prepare("SELECT estrellas, comentario FROM resenas WHERE trabajador_id = ? AND usuario_id = ?");
+        $stM->bind_param("ii", $id, $_SESSION['usuario_id']);
+        $stM->execute();
+        $resenaMia = $stM->get_result()->fetch_assoc();
+    }
+}
+
+// ¿El perfil que se mira pertenece al trabajador con sesión? (no tendría sentido que se contacte a sí mismo)
+$esMiPerfil = false;
+if ($t && isset($_SESSION['usuario_id'])) {
+    $stO = $conexion->prepare("SELECT 1 AS ok FROM usuarios WHERE id = ? AND trabajador_id = ?");
+    $stO->bind_param("ii", $_SESSION['usuario_id'], $id);
+    $stO->execute();
+    $esMiPerfil = (bool)$stO->get_result()->fetch_assoc();
+}
+
+// Valores para rellenar el formulario: lo que tenía guardado, o lo que intentó enviar si hubo error
+$estrellasForm  = $resenaMia ? (int)$resenaMia['estrellas'] : 0;
+$comentarioForm = $resenaMia ? $resenaMia['comentario'] : '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $estrellasForm  = (int)($_POST['estrellas'] ?? 0);
+    $comentarioForm = trim($_POST['comentario'] ?? '');
+}
+
+// Dibuja las estrellitas: llenas en dorado y vacías en gris (con texto para lectores de pantalla)
+function estrellasHtml($n) {
+    $salida = '<span class="cl-stars" aria-hidden="true">';
+    for ($i = 1; $i <= 5; $i++) {
+        $salida .= $i <= round((float)$n) ? '★' : '☆';
+    }
+    return $salida . '</span><span class="visually-hidden">' . round((float)$n, 1) . ' de 5 estrellas</span>';
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Clave de "mobile first": el ancho de la página sigue al del celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><?php echo $t ? htmlspecialchars($t['nombre']) . ' · ConectaLocal' : 'ConectaLocal'; ?></title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+      <div class="d-flex align-items-center">
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+        <a href="mi_cuenta.php" class="btn btn-sm cl-btn-gold me-2">Mi cuenta</a>
+        <?php else: ?>
+        <a href="login.php" class="btn btn-sm cl-btn-gold me-2">Iniciar sesión</a>
+        <?php endif; ?>
+        <button class="cl-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu"
+              aria-controls="menu" aria-label="Abrir menú"><i class="bi bi-list" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <?php include 'menu.php'; ?>
+
+    <main class="cl-section">
+    <div class="container cl-narrow">
+      <a class="cl-back" href="oficios.php"><i class="bi bi-arrow-left" aria-hidden="true"></i> Volver a la búsqueda</a>
+      <?php if (!$t): ?>
+      <div class="cl-vacio">
+        <p class="fw-bold mb-1">No encontramos este perfil.</p>
+        <p class="mb-3">Puede que el enlace esté incompleto o que el perfil ya no exista.</p>
+        <a class="btn cl-btn-dark" href="oficios.php">Ir a la búsqueda</a>
+      </div>
+      <?php elseif (!$logueado): ?>
+      <?php
+// Iniciales para el avatar, igual que en la vista con sesión
+$partes = explode(' ', $t['nombre']);
+$ini = strtoupper(implode('', array_map(fn($p) => mb_substr($p, 0, 1), array_slice($partes, 0, 2))));
+// Al entrar se vuelve a este mismo perfil, no a la cuenta
+$vuelta = rawurlencode('perfil.php?id=' . $id);
+?>
+      <article class="cl-card">
+        <div class="d-flex flex-column gap-3 mb-4">
+          <div class="cl-avatar cl-avatar-lg" aria-hidden="true"><?php echo htmlspecialchars($ini); ?></div>
+          <div>
+            <h1 class="cl-title mb-1"><?php echo htmlspecialchars($t['nombre']); ?></h1>
+            <p class="text-secondary mb-2"><?php echo htmlspecialchars($t['oficio']); ?> · <?php echo htmlspecialchars($t['sector']); ?></p>
+            <?php if ($totalResenas > 0): ?>
+            <p class="mb-2"><?php echo estrellasHtml($promedio); ?> <strong><?php echo number_format($promedio, 1, ',', ''); ?></strong> <span class="text-secondary small">(<?php echo $totalResenas; ?> reseña<?php echo $totalResenas != 1 ? 's' : ''; ?>)</span></p>
+            <?php else: ?>
+            <p class="text-secondary small mb-2">Aún sin reseñas</p>
+            <?php endif; ?>
+            <span class="cl-estado <?php echo $t['disponible'] ? 'si' : 'no'; ?>"><?php echo $t['disponible'] ? 'Disponible' : 'Ocupado'; ?></span>
+          </div>
+        </div>
+
+        <h2 class="h6 fw-bold">Sobre su trabajo</h2>
+        <p class="mb-4"><?php echo htmlspecialchars($t['descripcion']); ?></p>
+
+        <dl class="cl-datos mb-4">
+          <dt>Oficio</dt><dd><?php echo htmlspecialchars($t['oficio']); ?></dd>
+          <dt>Sector</dt><dd><?php echo htmlspecialchars($t['sector']); ?></dd>
+          <dt>Tarifa</dt><dd><?php echo htmlspecialchars($t['tarifa']); ?></dd>
+        </dl>
+
+        <div class="cl-lock">
+          <p class="cl-lock-cabecera"><i class="bi bi-lock-fill" aria-hidden="true"></i> Contacto directo por WhatsApp</p>
+          <p class="cl-lock-num" aria-hidden="true">+56 9 •••• ••••</p>
+          <p class="cl-lock-txt">Por seguridad el número se muestra solo a quienes tienen cuenta en ConectaLocal. Entra y escríbele directo, sin intermediarios.</p>
+          <a class="btn btn-lg cl-btn-wa w-100" href="login.php?redir=<?= $vuelta ?>"><i class="bi bi-whatsapp me-2" aria-hidden="true"></i>Iniciar sesión para contactar</a>
+          <p class="cl-lock-alt mb-0">¿No tienes cuenta? <a href="crear_cuenta.php">Crea una gratis</a> y contacta al instante.</p>
+        </div>
+
+        <p class="cl-nota mt-3 mb-0">Acuerda el trabajo y el precio por WhatsApp antes de empezar, y evita pagar por adelantado a quien no conoces.</p>
+      </article>
+      <?php else: ?>
+      <article class="cl-card">
+        <div class="d-flex flex-column gap-3 mb-4">
+          <?php
+$partes = explode(' ', $t['nombre']);
+$ini = strtoupper(implode('', array_map(fn($p) => mb_substr($p, 0, 1), array_slice($partes, 0, 2))));
+?>
+<div class="cl-avatar cl-avatar-lg" aria-hidden="true"><?php echo htmlspecialchars($ini); ?></div>
+          <div>
+            <h1 class="cl-title mb-1"><?php echo htmlspecialchars($t['nombre']); ?></h1>
+            <p class="text-secondary mb-2"><?php echo htmlspecialchars($t['oficio']); ?> · <?php echo htmlspecialchars($t['sector']); ?></p>
+            <?php if ($totalResenas > 0): ?>
+            <p class="mb-2"><?php echo estrellasHtml($promedio); ?> <strong><?php echo number_format($promedio, 1, ',', ''); ?></strong> <a href="#resenas" class="text-secondary small">(<?php echo $totalResenas; ?> reseña<?php echo $totalResenas != 1 ? 's' : ''; ?>)</a></p>
+            <?php else: ?>
+            <p class="text-secondary small mb-2">Aún sin reseñas</p>
+            <?php endif; ?>
+            <span class="cl-estado <?php echo $t['disponible'] ? 'si' : 'no'; ?>"><?php echo $t['disponible'] ? 'Disponible' : 'Ocupado'; ?></span>
+          </div>
+        </div>
+
+        <h2 class="h6 fw-bold">Sobre su trabajo</h2>
+        <p class="mb-4"><?php echo htmlspecialchars($t['descripcion']); ?></p>
+
+        <dl class="cl-datos mb-4">
+          <dt>Oficio</dt><dd><?php echo htmlspecialchars($t['oficio']); ?></dd>
+          <dt>Sector</dt><dd><?php echo htmlspecialchars($t['sector']); ?></dd>
+          <dt>Tarifa</dt><dd><?php echo htmlspecialchars($t['tarifa']); ?></dd>
+        </dl>
+
+        <?php if ($esMiPerfil): ?>
+        <div class="alert alert-info mb-0"><strong>Este es tu perfil público.</strong> Así es como lo ven los clientes. <a href="mi_cuenta.php">Ir a mi cuenta</a></div>
+        <?php elseif ($t['disponible']): ?>
+        <a class="btn btn-lg cl-btn-wa w-100" href="https://wa.me/<?php echo htmlspecialchars($t['whatsapp']); ?>" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-2" aria-hidden="true"></i>Escribir por WhatsApp</a>
+        <?php else: ?>
+        <span class="btn btn-lg cl-btn-wa w-100 disabled" aria-disabled="true">No disponible hoy</span>
+        <?php endif; ?>
+
+        <p class="cl-nota mt-3 mb-0">Acuerda el trabajo y el precio por WhatsApp antes de empezar, y evita pagar por adelantado a quien no conoces.</p>
+      </article>
+
+      <!-- Reseñas del trabajador -->
+      <section class="cl-card mt-4" id="resenas">
+        <h2 class="h5 fw-bold mb-3">Reseñas de clientes</h2>
+
+        <?php if ($totalResenas > 0): ?>
+        <p class="mb-4"><?php echo estrellasHtml($promedio); ?> <strong><?php echo number_format($promedio, 1, ',', ''); ?> de 5</strong> · <?php echo $totalResenas; ?> reseña<?php echo $totalResenas != 1 ? 's' : ''; ?></p>
+        <?php else: ?>
+        <p class="text-secondary mb-4">Este trabajador aún no tiene reseñas. ¡Sé la primera persona en calificar!</p>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['usuario_id']) && $_SESSION['rol'] === 'cliente'): ?>
+        <form method="post" action="perfil.php?id=<?php echo $id; ?>#resenas" class="mb-4">
+          <p class="fw-semibold mb-1"><?php echo $resenaMia ? 'Actualiza tu reseña' : 'Deja tu reseña'; ?></p>
+          <p class="text-secondary small mb-2">Califica solo si ya recibiste el servicio.</p>
+          <?php if ($errorResena): ?>
+          <div class="alert alert-danger py-2"><?php echo $errorResena; ?></div>
+          <?php endif; ?>
+          <div class="cl-rate" role="radiogroup" aria-label="Tu calificación en estrellas">
+            <?php for ($e = 5; $e >= 1; $e--): ?>
+            <input type="radio" id="est<?php echo $e; ?>" name="estrellas" value="<?php echo $e; ?>" <?php echo $estrellasForm === $e ? 'checked' : ''; ?> required>
+            <label for="est<?php echo $e; ?>" title="<?php echo $e; ?> de 5">★</label>
+            <?php endfor; ?>
+          </div>
+          <label for="comentario" class="visually-hidden">Tu comentario sobre el servicio</label>
+          <textarea class="form-control mb-2" id="comentario" name="comentario" rows="3" maxlength="300" placeholder="Cuéntanos tu experiencia (opcional)"><?php echo htmlspecialchars($comentarioForm); ?></textarea>
+          <button type="submit" class="btn cl-btn-dark"><?php echo $resenaMia ? 'Actualizar reseña' : 'Publicar reseña'; ?></button>
+        </form>
+        <?php elseif (!isset($_SESSION['usuario_id'])): ?>
+        <p class="small mb-4"><a href="login.php">Inicia sesión</a> como cliente para dejar tu reseña.</p>
+        <?php endif; ?>
+
+        <?php if ($totalResenas > 0): ?>
+        <ul class="cl-resenas">
+          <?php while ($r = $resenas->fetch_assoc()): ?>
+          <li class="cl-resena">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-1">
+              <strong><?php echo htmlspecialchars($r['cliente']); ?></strong>
+              <?php echo estrellasHtml($r['estrellas']); ?>
+            </div>
+            <?php if ($r['comentario'] !== ''): ?>
+            <p><?php echo htmlspecialchars($r['comentario']); ?></p>
+            <?php endif; ?>
+            <small class="text-secondary"><?php echo date('d-m-Y', strtotime($r['creado_en'])); ?></small>
+          </li>
+          <?php endwhile; ?>
+        </ul>
+        <?php endif; ?>
+      </section>
+      <?php endif; ?>
+    </div>
+  </main>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+===========================================================
+ARCHIVO: C:\xampp\htdocs\ConectaLocal-v2\registro.php
+===========================================================
+
+<?php
+session_start();
+include 'conexion.php';
+
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php');
+    exit;
+}
+if ($_SESSION['rol'] !== 'trabajador') {
+    header('Location: mi_cuenta.php');
+    exit;
+}
+
+// ¿Ya tiene un perfil de trabajador publicado?
+$stmt = $conexion->prepare("SELECT trabajador_id FROM usuarios WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['usuario_id']);
+$stmt->execute();
+$filaUsuario = $stmt->get_result()->fetch_assoc();
+$yaTienePerfil = !empty($filaUsuario['trabajador_id']);
+
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre      = trim($_POST['nombre'] ?? '');
+    $whatsapp    = preg_replace('/\s/', '', $_POST['whatsapp'] ?? '');
+    $oficio      = $_POST['oficio'] ?? '';
+    $sector      = $_POST['sector'] ?? '';
+    $tarifa      = trim($_POST['tarifa'] ?? '');
+    $descripcion = trim($_POST['descripcion'] ?? '');
+    $disponible  = isset($_POST['disponible']) ? 1 : 0;
+    $consent     = isset($_POST['consentimiento']);
+
+    // Validar en el servidor (nunca confiar solo en el navegador)
+    if (mb_strlen($nombre) < 3) $error = 'Nombre inválido.';
+    elseif (!preg_match('/^9\d{8}$/', $whatsapp)) $error = 'WhatsApp inválido.';
+    elseif ($oficio === '' || $sector === '') $error = 'Elige oficio y sector.';
+    elseif (mb_strlen($tarifa) < 3 || mb_strlen($descripcion) < 20) $error = 'Tarifa o descripción muy cortas.';
+    elseif (!$consent) $error = 'Debes aceptar el consentimiento.';
+    else {
+        // Buscar los IDs de oficio y sector
+        $st = $conexion->prepare("SELECT id FROM oficios WHERE nombre = ?");
+        $st->bind_param("s", $oficio); $st->execute();
+        $oficio_id = $st->get_result()->fetch_assoc()['id'] ?? null;
+
+        $st = $conexion->prepare("SELECT id FROM sectores WHERE nombre = ?");
+        $st->bind_param("s", $sector); $st->execute();
+        $sector_id = $st->get_result()->fetch_assoc()['id'] ?? null;
+
+        if (!$oficio_id || !$sector_id) {
+            $error = 'Oficio o sector no reconocido.';
+        } else {
+            // Subir la foto (opcional)
+            $foto = null;
+            if (!empty($_FILES['foto']['name'])) {
+                $permitidas = ['image/jpeg' => 'jpg', 'image/png' => 'png'];
+                $tipo = mime_content_type($_FILES['foto']['tmp_name']);
+                if (!isset($permitidas[$tipo])) $error = 'La foto debe ser JPG o PNG.';
+                elseif ($_FILES['foto']['size'] > 2 * 1024 * 1024) $error = 'La foto pesa más de 2 MB.';
+                else {
+                    $foto = uniqid('perfil_') . '.' . $permitidas[$tipo];
+                    move_uploaded_file($_FILES['foto']['tmp_name'], 'img/' . $foto);
+                }
+            }
+
+            if ($error === '') {
+                $wp = '56' . $whatsapp;
+                $st = $conexion->prepare("INSERT INTO trabajadores (nombre, whatsapp, oficio_id, sector_id, tarifa, descripcion, foto, disponible) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $st->bind_param("ssiisssi", $nombre, $wp, $oficio_id, $sector_id, $tarifa, $descripcion, $foto, $disponible);
+                if ($st->execute()) {
+                    // Vincular el perfil al usuario que inició sesión
+                    $nuevoId = $conexion->insert_id;
+                    $up = $conexion->prepare("UPDATE usuarios SET trabajador_id = ? WHERE id = ?");
+                    $up->bind_param("ii", $nuevoId, $_SESSION['usuario_id']);
+                    $up->execute();
+                    header('Location: registro.php?ok=1');
+                    exit;
+                }
+                $error = 'No se pudo guardar: ' . $conexion->error;
+            }
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Clave de "mobile first": el ancho de la página sigue al del celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ConectaLocal · Oficios de tu barrio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/css/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="cl-topbar">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+      <a class="cl-brand" href="index.php">Conecta<span>Local</span></a>
+      <div class="d-flex align-items-center">
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+        <a href="mi_cuenta.php" class="btn btn-sm cl-btn-gold me-2">Mi cuenta</a>
+        <?php else: ?>
+        <a href="login.php" class="btn btn-sm cl-btn-gold me-2">Iniciar sesión</a>
+        <?php endif; ?>
+        <button class="cl-burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu"
+              aria-controls="menu" aria-label="Abrir menú"><i class="bi bi-list" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <?php include 'menu.php'; ?>
+
+      <main class="cl-section">
+    <div class="container cl-narrow">
+      <h1 class="cl-title">Ofrece tus servicios</h1>
+      <p class="mb-4">Es gratis. Tu perfil aparece en la búsqueda y las personas te escriben directo por WhatsApp.</p>
+
+      <div class="alert alert-success<?php echo isset($_GET['ok']) ? '' : ' d-none'; ?>" id="exito" role="status" tabindex="-1">
+        <strong>Perfil listo.</strong> Tu servicio ya está publicado en ConectaLocal.
+      </div>
+
+      <?php if ($error !== ''): ?>
+      <div class="alert alert-danger" role="alert"><?php echo htmlspecialchars($error); ?></div>
+      <?php endif; ?>
+
+      <!-- novalidate: desactiva los mensajes del navegador para usar los nuestros -->
+      <?php if ($yaTienePerfil): ?>
+        <div class="alert alert-info"><strong>Ya tienes un perfil publicado.</strong> Puedes verlo desde <a href="mi_cuenta.php">mi cuenta</a>.</div>
+      <?php else: ?>
+      <form id="form-registro" class="cl-card" method="post" action="registro.php" enctype="multipart/form-data" novalidate>
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="name">
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="whatsapp" class="form-label fw-semibold">WhatsApp</label>
+          <div class="input-group">
+            <span class="input-group-text">+56</span>
+            <input type="tel" class="form-control" id="whatsapp" name="whatsapp" inputmode="numeric" placeholder="9 1234 5678" autocomplete="tel-national">
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="oficio" class="form-label fw-semibold">Oficio</label>
+          <select class="form-select" id="oficio" name="oficio">
+            <option value="">Elige un oficio</option>
+            <option>Gasfitería</option>
+            <option>Electricidad</option>
+            <option>Pintura</option>
+            <option>Carpintería</option>
+            <option>Cerrajería</option>
+            <option>Jardinería</option>
+            <option>Mueblista</option>
+            <option>Mecánico</option>
+          </select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="sector" class="form-label fw-semibold">Sector donde trabajas</label>
+          <select class="form-select" id="sector" name="sector">
+            <option value="">Elige un sector</option>
+            <option>Temuco</option>
+            <option>Labranza</option>
+            <option>Pedro de Valdivia</option>
+            <option>Padre las Casas</option>
+            <option>Fundo El Carmen</option>
+            <option>Pueblo Nuevo</option>
+            <option>Centro</option>
+            <option>Amanecer</option>
+            <option>Santa Rosa</option>
+          </select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="tarifa" class="form-label fw-semibold">Tarifa referencial</label>
+          <input type="text" class="form-control" id="tarifa" name="tarifa" placeholder="Ej: Desde $15.000 la visita">
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="descripcion" class="form-label fw-semibold">¿Qué trabajos haces?</label>
+          <textarea class="form-control" id="descripcion" name="descripcion" rows="3" maxlength="200"></textarea>
+          <div class="invalid-feedback"></div>
+          <div class="form-text text-end" id="contador-desc">0 / 200</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="foto" class="form-label fw-semibold">Foto (opcional)</label>
+          <input type="file" class="form-control" id="foto" name="foto" accept="image/jpeg,image/png">
+          <div class="invalid-feedback"></div>
+          <div class="form-text">JPG o PNG, máximo 2 MB.</div>
+          <img id="vista-previa" class="cl-foto-preview d-none mt-2" alt="Vista previa de tu foto">
+        </div>
+
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" role="switch" id="disponible" name="disponible" checked>
+          <label class="form-check-label" for="disponible">Estoy disponible ahora</label>
+        </div>
+
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="consentimiento" name="consentimiento">
+          <label class="form-check-label" for="consentimiento">Acepto que mi nombre, WhatsApp y foto sean visibles públicamente en ConectaLocal.</label>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <button type="submit" class="btn btn-lg cl-btn-dark w-100">Publicar mi perfil</button>
+      </form>
+      <?php endif; ?>
+    </div>
+  </main>
+
+  <footer class="cl-footer">
+    <div class="container">ConectaLocal · Proyecto de práctica en Agencia GAMA · 2026</div>
+  </footer>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>
+
+
+
